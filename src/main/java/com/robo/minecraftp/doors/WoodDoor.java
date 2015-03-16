@@ -17,9 +17,12 @@ public class WoodDoor extends DoorDescriptor {
 
 		setMaterial(Material.wood); 
 		setSoundType(Block.soundTypeWood); 
-		setHardness(3.0F); 
-
-		setMaxStackSize(64);
+		setHardness(3.0F);
+		try {
+			if ( this.getClass().getMethod("setMaxStackSize", int.class) != null) {
+				setMaxStackSize(64);
+			}
+		} catch (Exception e) {}
 		setName(unlocalizedName);
 		setTextureName(ModInfo.MODID + ":" + unlocalizedName);
 		setMovement(DoorRegistry.getMovement(RotatingDoorMovement.class)); 
