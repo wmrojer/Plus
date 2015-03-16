@@ -1,0 +1,66 @@
+
+tile.cobblestone_wall.name=Cobblestone Wall
+tile.cobblestone_mossy_wall.name=Mossy Cobblestone Wall
+tile.stone_wall.name=Stone Wall
+tile.stonebrick_wall.name=Stone Brick Wall
+tile.stonebrick_mossy_wall.name=Mossy Stonebrick Wall
+tile.stonebrick_cracked_wall.name=Cracked Stonebrick Wall
+tile.stonebrick_chiseled_wall.name=Carved Stonebrick Wall
+tile.sandstone_wall.name=Sandstone Wall
+tile.sandstone_chiseled_wall.name=Carved Sandstone Wall
+tile.sandstone_smooth_wall.name=Smooth Sandstone Wall
+tile.brick_wall.name=Brick Wall
+tile.nether_brick_wall.name=Nether Brick Wall
+tile.quartz_wall.name=Quartz Wall
+tile.quartz_chiseled_wall.name=Chiseled Quartz Wall
+tile.quartz_pillar_wall.name=Pillar Quartz Wall
+
+tile.oak_fence.name=Oak Fence
+tile.spruce_fence.name=Spruce Fence
+tile.birch_fence.name=Birch Fence
+tile.jungle_fence.name=Jungle Fence
+tile.acacia_fence.name=Acacia Fence
+tile.big_oak_fence.name=Dark Oak Fence
+
+tile.oak_fence_gate.name=Oak Fence Gate
+tile.spruce_fence_gate.name=Spruce Fence Gate
+tile.birch_fence_gate.name=Birch Fence Gate
+tile.jungle_fence_gate.name=Jungle Fence Gate
+tile.acacia_fence_gate.name=Acacia Fence Gate
+tile.big_oak_fence_gate.name=Dark Oak Fence Gate
+
+item.door_oak.name=Oak Door
+item.door_spruce.name=Spruce Door
+item.door_birch.name=Birch Door
+item.door_jungle.name=Jungle Door
+item.door_acacia.name=Acacia Door
+item.door_dark_oak.name=Dark Oak Door
+
+tile.dirt_stairs.name=Dirt Stairs
+tile.stone_stairs.name=Stone Stairs
+tile.stone_mossy_stairs=Mossy Cobblestone Stairs
+tile.stonebrick_mossy_stairs.name=Mossy Stonebrick Stairs
+tile.stonebrick_cracked_stairs.name=Cracked Stonebrick Stairs
+tile.stonebrick_chiseled_stairs.name=Carved Stonebrick Stairs
+tile.sandstone_chiseled_slab.name=Carved Sandstone Stairs
+tile.sandstone_smooth_slab.name=Smooth Sandstone Stairs
+tile quartz_chiseled_stairs.name=Chiseled Quartz Stairs
+tile quartz_pillar_stairs.name=Pillar Quartz Stairs
+
+tile.dirt_slab.name=Dirt Slab
+tile.cobblestone_mossy_slab=Mossy Cobblestone Slab
+tile.stonebrick_mossy_slab.name=Mossy Stonebrick Slab
+tile.stonebrick_cracked_slab.name=Cracked Stonebrick Slab
+tile.stonebrick_chiseled_slab.name=Carved Stonebrick Slab
+tile.sandstone_chiseled_slab.name=Carved Sandstone Slab
+tile.sandstone_smooth_slab.name=Smooth Sandstone Slab
+tile.quartz_chiseled_slab.name=Chiseled Quartz Slab
+tile.quartz_pillar_slab.name=Pillar Quartz Slab
+
+item.obsidian_sword.name=Obsidian Sword
+item.obsidian_axe.name=Obsidian Axe
+item.obsidian_hoe.name=Obsidian Hoe
+item.obsidian_pickaxe.name=Obsidian Pickaxe
+item.obsidian_shovel.name=Obsidian Shovel
+item.mutton_raw.name=Raw Mutton
+item.mutton_cooked.name=Cooked Mutton

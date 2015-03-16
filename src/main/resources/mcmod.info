@@ -1,0 +1,18 @@
+[
+{
+  "modid": "minecraft+",
+  "name": "Minecraft+",
+  "description": "Adds 'missing' blocks to Minecraft.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["robo"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "requiredMods": ["Forge"],
+  "dependencies": ["Thaumcraft","malisisdoors"],
+  "useDependencyInformation": "true"
+}
+]
