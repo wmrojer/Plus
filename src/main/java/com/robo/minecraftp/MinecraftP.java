@@ -39,7 +39,7 @@ public class MinecraftP
     	FMLCommonHandler.instance().bus().register(new ConfigHandler());
     	BlocksP.registerBlocks();
     	ItemsP.registerItems();
-    	DoorsP.register();
+    	DoorsP.registerDoors();
     }
     
     @EventHandler

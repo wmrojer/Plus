@@ -1,72 +1,98 @@
 package com.robo.minecraftp.blocks;
 
+import thaumcraft.common.config.ConfigBlocks;
+
 import com.robo.minecraftp.config.ConfigHandler;
 import com.robo.minecraftp.items.ItemSlabP;
 
+import net.malisis.core.ReplacementTool;
 import net.minecraft.block.Block;
+import net.minecraft.block.Block.SoundType;
+import net.minecraft.block.BlockFence;
+import net.minecraft.block.BlockFenceGate;
+import net.minecraft.block.BlockSlab;
+import net.minecraft.block.BlockStairs;
+import net.minecraft.block.BlockWall;
+import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class BlocksP {
 	
-	public static BlockWallP cobblestone_wall;
-	public static BlockWallP cobblestone_mossy_wall;
-	public static BlockWallP stone_wall;
-	public static BlockWallP stonebrick_wall;
-	public static BlockWallP stonebrick_mossy_wall;
-	public static BlockWallP stonebrick_cracked_wall;
-	public static BlockWallP stonebrick_chiseled_wall;
-	public static BlockWallP sandstone_wall;
-	public static BlockWallP sandstone_chiseled_wall;
-	public static BlockWallP sandstone_smooth_wall;
-	public static BlockWallP brick_wall;
-	public static BlockWallP nether_brick_wall;
-	public static BlockWallP quartz_wall;
-	public static BlockWallP quartz_chiseled_wall;
-	public static BlockWallP quartz_pillar_wall;
+	public static BlockWall cobblestone_wall;
+	public static BlockWall cobblestone_mossy_wall;
+	public static BlockWall stone_wall;
+	public static BlockWall stonebrick_wall;
+	public static BlockWall stonebrick_mossy_wall;
+	public static BlockWall stonebrick_cracked_wall;
+	public static BlockWall stonebrick_chiseled_wall;
+	public static BlockWall sandstone_wall;
+	public static BlockWall sandstone_chiseled_wall;
+	public static BlockWall sandstone_smooth_wall;
+	public static BlockWall brick_wall;
+	public static BlockWall nether_brick_wall;
+	public static BlockWall quartz_wall;
+	public static BlockWall quartz_chiseled_wall;
+	public static BlockWall quartz_pillar_wall;
+	public static BlockWall arcane_stone_wall;
+	public static BlockWall arcane_brick_wall;
+	public static BlockWall ancient_stone_wall;
 	
-	public static BlockFenceP oak_fence;
-	public static BlockFenceP spruce_fence;
-	public static BlockFenceP birch_fence;
-	public static BlockFenceP jungle_fence;
-	public static BlockFenceP acacia_fence;
-	public static BlockFenceP big_oak_fence;
+	public static BlockFence oak_fence;
+	public static BlockFence spruce_fence;
+	public static BlockFence birch_fence;
+	public static BlockFence jungle_fence;
+	public static BlockFence acacia_fence;
+	public static BlockFence big_oak_fence;
+	public static BlockFence nether_brick_fence;
+	public static BlockFence greatwood_fence;
+	public static BlockFence silverwood_fence;
 	
-	public static BlockFenceGateP oak_fence_gate;
-	public static BlockFenceGateP spruce_fence_gate;
-	public static BlockFenceGateP birch_fence_gate;
-	public static BlockFenceGateP jungle_fence_gate;
-	public static BlockFenceGateP acacia_fence_gate;
-	public static BlockFenceGateP big_oak_fence_gate;
+//	public static BlockFenceGate oak_fence_gate;
+	public static BlockFenceGate spruce_fence_gate;
+	public static BlockFenceGate birch_fence_gate;
+	public static BlockFenceGate jungle_fence_gate;
+	public static BlockFenceGate acacia_fence_gate;
+	public static BlockFenceGate big_oak_fence_gate;
+	public static BlockFenceGate nether_brick_fence_gate;
+	public static BlockFenceGate greatwood_fence_gate;
+	public static BlockFenceGate silverwood_fence_gate;
 	
-	public static BlockStairsP dirt_stairs;
-	public static BlockStairsP stone_stairs;
-	public static BlockStairsP cobblestone_mossy_stairs;
-	public static BlockStairsP stonebrick_mossy_stairs;
-	public static BlockStairsP stonebrick_cracked_stairs;
-	public static BlockStairsP stonebrick_chiseled_stairs;
-	public static BlockStairsP sandstone_chiseled_stairs;
-	public static BlockStairsP sandstone_smooth_stairs;
-	public static BlockStairsP quartz_stairs;
-	public static BlockStairsP quartz_chiseled_stairs;
-	public static BlockStairsP quartz_pillar_stairs;
+	public static BlockStairs dirt_stairs;
+	public static BlockStairs stone_stairs;
+	public static BlockStairs cobblestone_mossy_stairs;
+	public static BlockStairs stonebrick_mossy_stairs;
+	public static BlockStairs stonebrick_cracked_stairs;
+	public static BlockStairs stonebrick_chiseled_stairs;
+	public static BlockStairs sandstone_chiseled_stairs;
+	public static BlockStairs sandstone_smooth_stairs;
+	public static BlockStairs quartz_stairs;
+	public static BlockStairs quartz_chiseled_stairs;
+	public static BlockStairs quartz_pillar_stairs;
 	
-	public static BlockSlabP dirt_slab;
-	public static BlockSlabP cobblestone_mossy_slab;
-	public static BlockSlabP stonebrick_mossy_slab;
-	public static BlockSlabP stonebrick_cracked_slab;
-	public static BlockSlabP stonebrick_chiseled_slab; 
-	public static BlockSlabP sandstone_chiseled_slab;
-	public static BlockSlabP sandstone_smooth_slab;
-	public static BlockSlabP quartz_chiseled_slab;
-	public static BlockSlabP quartz_pillar_slab;
+	public static BlockSlab dirt_slab;
+	public static BlockSlab cobblestone_mossy_slab;
+	public static BlockSlab stonebrick_mossy_slab;
+	public static BlockSlab stonebrick_cracked_slab;
+	public static BlockSlab stonebrick_chiseled_slab; 
+	public static BlockSlab sandstone_chiseled_slab;
+	public static BlockSlab sandstone_smooth_slab;
+	public static BlockSlab quartz_chiseled_slab;
+	public static BlockSlab quartz_pillar_slab;
 	
 	public static void registerBlocks() 
 	{
 		
 		if (ConfigHandler.replaceVanillaWalls) {
-			cobblestone_wall = addWall("cobblestone_wall", Blocks.cobblestone);
-			cobblestone_mossy_wall = addWall("cobblestone_mossy_wall", Blocks.mossy_cobblestone);
+			if (Loader.isModLoaded("malisiscore")) {
+				cobblestone_wall = new BlockCobblestoneWall(Blocks.cobblestone);
+				cobblestone_mossy_wall = cobblestone_wall;
+				ReplacementTool.replaceVanillaBlock(139, "cobblestone_wall", "field_150463_bK", cobblestone_wall, Blocks.cobblestone_wall);
+			} else {
+				cobblestone_wall = addWall("cobblestone_wall", Blocks.cobblestone);
+				cobblestone_mossy_wall = addWall("cobblestone_mossy_wall", Blocks.mossy_cobblestone);
+			}
 		}
 
 		if (ConfigHandler.enableStoneWall) {
@@ -96,6 +122,16 @@ public class BlocksP {
 			quartz_wall = addWall("quartz_wall", Blocks.quartz_block);
 			quartz_chiseled_wall = addWall("quartz_chiseled_wall", Blocks.quartz_block, 1);
 			quartz_pillar_wall = addWall("quartz_pillar_wall", Blocks.quartz_block, 2);
+		}
+
+		if (ConfigHandler.enableThaumcraftWalls) {
+			if (Loader.isModLoaded("Thaumcraft")) {
+				arcane_stone_wall = addWall("arcane_stone_wall", ConfigBlocks.blockCosmeticSolid, 6);
+				arcane_stone_wall.setResistance(20.0F);
+				arcane_brick_wall = addWall("arcane_brick_wall", ConfigBlocks.blockCosmeticSolid, 7);
+				arcane_brick_wall.setHardness(4.0F).setResistance(20.0F);
+				ancient_stone_wall = addWall("ancient_stone_wall", ConfigBlocks.blockCosmeticSolid, 11);
+			}
 		}
 		
 		if (ConfigHandler.enableDirtStairs) {
@@ -138,7 +174,16 @@ public class BlocksP {
 		}
 		
 		if (ConfigHandler.enableWoodSpecificFences) {
-			oak_fence = addFence("oak_fence", Blocks.planks);
+			if (ConfigHandler.replaceVanillaFences && Loader.isModLoaded("malisiscore")) {
+				oak_fence = new BlockFenceP("oak_fence", Blocks.planks, 0);
+				//oak_fence.setBlockName("oak_fence").setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood);
+				ReplacementTool.replaceVanillaBlock(85, "fence", "field_150422_aJ", oak_fence, Blocks.fence);
+				nether_brick_fence = new BlockFenceP("nether_brick_fence", Blocks.nether_brick, 0);
+				ReplacementTool.replaceVanillaBlock(113, "nether_brick_fence", "field_150386_bk", nether_brick_fence, Blocks.nether_brick_fence);
+			} else {
+				oak_fence = addFence("oak_fence", Blocks.planks);
+				nether_brick_fence = addFence("nether_brick_fence", Blocks.nether_brick);
+			}
 			spruce_fence = addFence("spruce_fence", Blocks.planks, 1);
 			birch_fence = addFence("birch_fence", Blocks.planks, 2);
 			jungle_fence = addFence("jungle_fence", Blocks.planks, 3);
@@ -147,22 +192,32 @@ public class BlocksP {
 		}
 		
 		if (ConfigHandler.enableWoodSpecificFenceGates) {
-			oak_fence_gate = addFenceGate("oak_fence_gate", Blocks.planks);
+			// oak_fence_gate = addFenceGate("oak_fence_gate", Blocks.planks);
 			spruce_fence_gate = addFenceGate("spruce_fence_gate", Blocks.planks, 1);
 			birch_fence_gate = addFenceGate("birch_fence_gate", Blocks.planks, 2);
 			jungle_fence_gate = addFenceGate("jungle_fence_gate", Blocks.planks, 3);
 			acacia_fence_gate = addFenceGate("acacia_fence_gate", Blocks.planks, 4);
 			big_oak_fence_gate = addFenceGate("big_oak_fence_gate", Blocks.planks, 5);
+			nether_brick_fence_gate = addFenceGate("nether_brick_fence_gate", Blocks.nether_brick, 0);
+		}
+
+		if (ConfigHandler.enableThaumcraftFences) {
+			if (Loader.isModLoaded("Thaumcraft")) {
+				greatwood_fence = addFence("greatwood_fence", ConfigBlocks.blockWoodenDevice, 6);
+				silverwood_fence = addFence("silverwood_fence", ConfigBlocks.blockWoodenDevice, 7);
+				greatwood_fence_gate = addFenceGate("greatwood_fence_gate", ConfigBlocks.blockWoodenDevice, 6);
+				silverwood_fence_gate = addFenceGate("silverwood_fence_gate", ConfigBlocks.blockWoodenDevice, 7);
+			}
 		}
 	
 	}
 	
-	public static BlockWallP addWall(String name, Block block)
+	public static BlockWall addWall(String name, Block block)
 	{
 		return addWall(name, block, 0);
 	}
 
-	public static BlockWallP addWall(String name, Block block, int meta)
+	public static BlockWall addWall(String name, Block block, int meta)
 	{
 		BlockWallP wall = new BlockWallP(block, meta);
 		wall.setBlockName(name);
@@ -170,72 +225,89 @@ public class BlocksP {
 		return wall;
 	}
 
-	public static BlockFenceP addFence(String name, Block block)
+	public static BlockFence addFence(String name, Block block)
 	{
 		return addFence(name, block, 0);
 	}
 	
-	public static BlockFenceP addFence(String name, Block block, int meta)
+	public static BlockFence addFence(String name, Block block, int meta)
 	{
-		BlockFenceP fence = new BlockFenceP(block, meta);
-		fence.setBlockName(name).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood);
+		BlockFenceP fence = new BlockFenceP(name, block, meta);
+		//fence.setBlockName(name).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood);
 		GameRegistry.registerBlock(fence, name);
 		return fence;
 	}
 	
-	public static BlockFenceGateP addFenceGate(String name, Block block)
+	public static BlockFenceGate addFenceGate(String name, Block block)
 	{
 		return addFenceGate(name, block, 0);
 	}
 	
-	public static BlockFenceGateP addFenceGate(String name, Block block, int meta)
+	public static BlockFenceGate addFenceGate(String name, Block block, int meta)
 	{
-		BlockFenceGateP gate = new BlockFenceGateP(block, meta);
+		BlockFenceGate gate;
+		gate = new BlockFenceGateP(block, meta);
 		gate.setBlockName(name).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood);
 		GameRegistry.registerBlock(gate, name);
 		return gate;
 	}
 
-	public static BlockStairsP addStairs(String name, Block block)
+	public static BlockStairs addStairs(String name, Block block)
 	{
 		return addStairs(name, block, 0);
 	}
 	
-	public static BlockStairsP addStairs(String name, Block block, int meta)
+	public static BlockStairs addStairs(String name, Block block, int meta)
 	{
-		BlockStairsP stair = new BlockStairsP(block,meta);
-		stair.setBlockName(name);
+		BlockStairsP stair = new BlockStairsP(name, block, meta);
 		GameRegistry.registerBlock(stair, name);
 		return stair;
 	}
 	
-	public static BlockSlabP addSlab(String name, Block block) {
+	public static BlockSlab addSlab(String name, Block block) {
 		return addSlab(name, block, 0);
 	}
-	public static BlockSlabP addSlab(String name, Block block, float hardness) {
+	public static BlockSlab addSlab(String name, Block block, float hardness) {
 		return addSlab(name, block, 0, null, null, hardness);
 	}
-	public static BlockSlabP addSlab(String name, Block block, int meta) {
+	public static BlockSlab addSlab(String name, Block block, int meta) {
 		return addSlab(name, block, meta, null, null);
 	}
-	public static BlockSlabP addSlab(String name, Block block, String topTexture, String sideTexture) {
+	public static BlockSlab addSlab(String name, Block block, String topTexture, String sideTexture) {
 		return addSlab(name, block, 0, topTexture, sideTexture);
 	}
-	public static BlockSlabP addSlab(String name, Block block, int meta, String topTexture, String sideTexture) {
+	public static BlockSlab addSlab(String name, Block block, int meta, String topTexture, String sideTexture) {
 		return addSlab(name, block, meta, topTexture, sideTexture, 2.0f);
 	}
-	public static BlockSlabP addSlab(String name, Block block, int meta, String topTexture, String sideTexture, float hardness) {
+	public static BlockSlab addSlab(String name, Block block, int meta, String topTexture, String sideTexture, float hardness) {
 		return addSlab(name, block, meta, topTexture, sideTexture, hardness, hardness*5);
 	}
-	public static BlockSlabP addSlab(String name, Block block, int meta, String topTexture, String sideTexture, float hardness, float resistance) {
-		BlockSlabP singleSlab = new BlockSlabP(false, block, meta, topTexture, sideTexture);
-		singleSlab.setBlockName(name).setHardness(hardness).setResistance(resistance).setStepSound(Block.soundTypePiston);
-		BlockSlabP doubleSlab = new BlockSlabP(true, block, meta, topTexture, sideTexture);
-		doubleSlab.setBlockName(name).setHardness(hardness).setResistance(resistance).setStepSound(Block.soundTypePiston);
+	public static BlockSlab addSlab(String name, Block block, int meta, String topTexture, String sideTexture, float hardness, float resistance) {
+		BlockSlabP singleSlab = new BlockSlabP(name, false, block, meta, topTexture, sideTexture);
+		//singleSlab.setHardness(hardness).setResistance(resistance).setStepSound(Block.soundTypePiston);
+		BlockSlabP doubleSlab = new BlockSlabP(name, true, block, meta, topTexture, sideTexture);
+		//doubleSlab.setHardness(hardness).setResistance(resistance).setStepSound(Block.soundTypePiston);
 		doubleSlab.setHalfBlock(singleSlab);
 		GameRegistry.registerBlock(singleSlab, ItemSlabP.class, name, singleSlab, doubleSlab, false);
-		GameRegistry.registerBlock(doubleSlab, ItemSlabP.class, name+"_double", singleSlab, doubleSlab, false);
+		GameRegistry.registerBlock(doubleSlab, ItemSlabP.class, name+"_double", singleSlab, doubleSlab, true);
 		
 		return singleSlab;
+	}
+	
+	public static SoundType getSoundFromMaterial(Material material) {
+		if (material == Material.ground) {
+			return Block.soundTypeGravel;
+		} else if (material == Material.wood ) {
+			return Block.soundTypeWood;
+		} else if (material == Material.grass ) {
+			return Block.soundTypeGrass;
+		} else if (material == Material.sand ) {
+			return Block.soundTypeSand;
+		} else if (material == Material.glass ) {
+			return Block.soundTypeGlass;
+		} else if (material == Material.iron ) {
+			return Block.soundTypeMetal;
+		}
+		return Block.soundTypeStone;
 	}
 }

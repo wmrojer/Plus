@@ -17,6 +17,10 @@ buildscript {
 
 apply plugin: 'forge'
 
+// Java version target/source compatibility
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
 ext {
 	//Import config file thanks to pahimar :D
 	ext.configFile = file "buildconfig.properties"
@@ -56,6 +60,8 @@ sourceSets {
 }
 
 dependencies {
+		//compile 'net.malisis:malisiscore:1.7.10-0.10.5:dev'
+		//compile 'net.malisis:malisisdoors:1.7.10-1.4.3:dev'
     // you may put jars on which you depend on in ./libs
     // or you may define them like so..
     //compile "some.group:artifact:version:classifier"
@@ -88,6 +94,7 @@ processResources
     // copy everything else, thats not the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
+        exclude 'malisiscore_at.cfg'
     }
 }
 
@@ -119,6 +126,6 @@ task devJar(type: Jar) {
 }
 
 artifacts {
-    archives srcJar
+    //archives srcJar
     archives devJar
 }

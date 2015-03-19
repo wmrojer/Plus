@@ -2,7 +2,10 @@ package com.robo.minecraftp.blocks;
 
 import java.util.List;
 
+import com.robo.minecraftp.config.ConfigHandler;
+
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.BlockWall;
 import net.minecraft.block.material.Material;
@@ -18,22 +21,23 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockWallP extends BlockWall {
 
 	private Block textureBlock;
-	private int meta;
+	private int textureBlockMetadata;
 	
 	public BlockWallP(Block block) {
 		this(block, 0);
 	}
 
-	public BlockWallP(Block block, int meta) {
+	public BlockWallP(Block block, int metadata) {
 		super(block);
 		textureBlock = block;
-		this.meta = meta;
+		this.textureBlockMetadata = metadata;
 	}
 
 	@Override
 	public boolean canConnectWallTo(IBlockAccess blockAccess, int x, int y, int z) {
         Block block = blockAccess.getBlock(x, y, z);
-        return !(block instanceof BlockWall) && !(block instanceof BlockFenceGate) ? (block.getMaterial().isOpaque() && block.renderAsNormalBlock() ? block.getMaterial() != Material.gourd : false) : true;
+        boolean flag = (ConfigHandler.interconnectWalls && block instanceof BlockWall) || block == this || (ConfigHandler.connectWallsFences && block instanceof BlockFence);
+        return !flag && !(block instanceof BlockFenceGate) ? (block.getMaterial().isOpaque() && block.renderAsNormalBlock() ? block.getMaterial() != Material.gourd : false) : true;
 	}
 
 	@Override
@@ -49,7 +53,7 @@ public class BlockWallP extends BlockWall {
 	@Override
     @SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
-        return textureBlock.getIcon(side, this.meta);
+        return textureBlock.getIcon(side, this.textureBlockMetadata);
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })

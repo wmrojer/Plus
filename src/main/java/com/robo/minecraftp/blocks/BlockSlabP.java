@@ -3,6 +3,9 @@ package com.robo.minecraftp.blocks;
 import java.util.List;
 import java.util.Random;
 
+import com.robo.minecraftp.MinecraftP;
+
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
@@ -11,9 +14,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Facing;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockSlabP extends BlockSlab {
@@ -21,27 +22,40 @@ public class BlockSlabP extends BlockSlab {
     @SideOnly(Side.CLIENT)
     private IIcon sideIcon;
 	private Block textureBlock;
-	private int meta;
+	private int textureBlockMetadata;
 	private Block halfBlock;
 	String sideTexture;
 	String topTexture;
 	
-	public BlockSlabP(boolean doubleSlab, Block block) {
-		this(doubleSlab, block, 0, null, null);
+	public BlockSlabP(String name, boolean doubleSlab, Block block) {
+		this(name, doubleSlab, block, 0, null, null);
 	}
 	
-	public BlockSlabP(boolean doubleSlab, Block block, int metadata, String topTexture, String sideTexture) {
-		super(doubleSlab, block.getMaterial());
+	public BlockSlabP(String name, boolean doubleSlab, Block textureBlock, int textureBlockMetadata, String topTexture, String sideTexture) {
+		super(doubleSlab, textureBlock.getMaterial());
+		this.setBlockName(name);
+		this.setStepSound(textureBlock.stepSound);
+		try {
+			this.setHardness((Float)ObfuscationReflectionHelper.getPrivateValue(Block.class, textureBlock, "blockHardness", "field_149782_v"));
+		} catch(Exception e) {
+			MinecraftP.log.error("Unable to set blockHardness " + name + ". " + e.getMessage());
+		}
+		try {
+			this.blockResistance = (Float)ObfuscationReflectionHelper.getPrivateValue(Block.class, textureBlock, "blockResistance", "field_149781_w");
+		} catch(Exception e) {
+			MinecraftP.log.error("Unable to set blockResistance for " + name + ". " + e.getMessage());
+		}
+		
 		if (!doubleSlab) {
 			this.setCreativeTab(CreativeTabs.tabBlock);
-		}
-		textureBlock = block;
-		if (!doubleSlab) {
 			halfBlock = this;
 		}
-		this.meta = metadata;
+		this.textureBlock = textureBlock;
+		this.textureBlockMetadata = textureBlockMetadata;
 		this.topTexture = topTexture;
 		this.sideTexture = sideTexture;
+		this.useNeighborBrightness = true;
+		
 	}
 
 	public BlockSlabP setHalfBlock(Block block) {
@@ -70,48 +84,17 @@ public class BlockSlabP extends BlockSlab {
         return Item.getItemFromBlock(halfBlock);
     }
 
-	
     /**
-     * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given
-     * coordinates.  Args: blockAccess, x, y, z, side
+     * Returns true if the given block is a slab.
+     * Args: block
      */
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockAccess blockAccess, int x, int y, int z, int side)
-    {
-    	boolean renderSide = super.shouldSideBeRendered(blockAccess, x, y, z, side);
-        if (this.field_150004_a)
-        {
-            return renderSide;
-        }
-        else if (side != 1 && side != 0 && !renderSide)
-        {
-            return false;
-        }
-        else
-        {
-            int i1 = x + Facing.offsetsXForSide[Facing.oppositeSide[side]];
-            int j1 = y + Facing.offsetsYForSide[Facing.oppositeSide[side]];
-            int k1 = z + Facing.offsetsZForSide[Facing.oppositeSide[side]];
-            if (func_150003_a(blockAccess.getBlock(i1, j1, k1))) {
-            	boolean flag = (blockAccess.getBlockMetadata(i1, j1, k1) & 8) != 0;
-//            	boolean flag2 = (blockAccess.getBlockMetadata(x, y, z) & 8) == 0;
-            	return flag ? (side == 0 ? true : (side == 1 && renderSide ? true : renderSide)) 
-            		    : (side == 1 ? true : (side == 0 && renderSide ? true : renderSide));
-            }
-            return renderSide;
-//            return flag ? (side == 0 ? true : (side == 1 && super.shouldSideBeRendered(blockAccess, x, y, z, side) ? true : !func_150003_a(blockAccess.getBlock(x, y, z)) || (blockAccess.getBlockMetadata(x, y, z) & 8) == 0)) 
-//            		    : (side == 1 ? true : (side == 0 && super.shouldSideBeRendered(blockAccess, x, y, z, side) ? true : !func_150003_a(blockAccess.getBlock(x, y, z)) || (blockAccess.getBlockMetadata(x, y, z) & 8) != 0));
-        }
-    }
-
-    @SideOnly(Side.CLIENT)
+	@SideOnly(Side.CLIENT)
     private static boolean func_150003_a(Block block)
     {
         return block instanceof BlockSlab;
     }
 
-   @Override
+	@Override
     @SideOnly(Side.CLIENT)
 	public Item getItem(World world, int x, int y, int z) {
 		return Item.getItemFromBlock(halfBlock);
@@ -124,7 +107,7 @@ public class BlockSlabP extends BlockSlab {
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta)
     {
-        return side != 1 && side != 0 ? (sideTexture != null ? this.sideIcon : textureBlock.getIcon(side, this.meta)) : (topTexture != null ? this.blockIcon : textureBlock.getIcon(side, this.meta));
+        return side != 1 && side != 0 ? (sideTexture != null ? this.sideIcon : textureBlock.getIcon(side, this.textureBlockMetadata)) : (topTexture != null ? this.blockIcon : textureBlock.getIcon(side, this.textureBlockMetadata));
     }
 
     @Override

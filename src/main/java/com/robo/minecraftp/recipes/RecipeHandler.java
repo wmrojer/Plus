@@ -3,11 +3,14 @@ package com.robo.minecraftp.recipes;
 import java.util.Iterator;
 import java.util.List;
 
+import thaumcraft.common.config.ConfigBlocks;
+
 import com.robo.minecraftp.blocks.BlocksP;
 import com.robo.minecraftp.config.ConfigHandler;
 import com.robo.minecraftp.doors.DoorsP;
 import com.robo.minecraftp.items.ItemsP;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -54,11 +57,17 @@ public class RecipeHandler {
 		
 		// Walls
 		if (ConfigHandler.replaceVanillaWalls) {
+			
 			removeRecipe(Blocks.cobblestone_wall);
-			safeAddShaped(BlocksP.cobblestone_wall, 6, new Object[] {"###", "###", '#', Blocks.cobblestone});
-			safeAddShaped(BlocksP.cobblestone_mossy_wall, 6, new Object[] {"###", "###", '#', Blocks.mossy_cobblestone});
-			GameRegistry.addShapelessRecipe(new ItemStack(BlocksP.cobblestone_wall, 1), new ItemStack(Blocks.cobblestone_wall, 1, 0)); // Convert vanilla to minecraft+
-			GameRegistry.addShapelessRecipe(new ItemStack(BlocksP.cobblestone_mossy_wall, 1), new ItemStack(Blocks.cobblestone_wall, 1, 1)); // Convert vanilla to minecraft+
+			if (Loader.isModLoaded("malisiscore")) {
+				safeAddShaped(BlocksP.cobblestone_wall, 6, 0, new Object[] {"###", "###", '#', Blocks.cobblestone});
+				safeAddShaped(BlocksP.cobblestone_wall, 6, 1, new Object[] {"###", "###", '#', Blocks.mossy_cobblestone});
+			} else {
+				safeAddShaped(BlocksP.cobblestone_wall, 6, new Object[] {"###", "###", '#', Blocks.cobblestone});
+				safeAddShaped(BlocksP.cobblestone_mossy_wall, 6, new Object[] {"###", "###", '#', Blocks.mossy_cobblestone});
+				GameRegistry.addShapelessRecipe(new ItemStack(BlocksP.cobblestone_wall, 1), new ItemStack(Blocks.cobblestone_wall, 1, 0)); // Convert vanilla to minecraft+
+				GameRegistry.addShapelessRecipe(new ItemStack(BlocksP.cobblestone_mossy_wall, 1), new ItemStack(Blocks.cobblestone_wall, 1, 1)); // Convert vanilla to minecraft+
+			}
 		}
 
 		if (ConfigHandler.enableStoneWall) {
@@ -91,6 +100,13 @@ public class RecipeHandler {
 			safeAddShaped(BlocksP.quartz_pillar_wall, 6, new Object[] {"###", "###", '#', new ItemStack(Blocks.quartz_block, 1, 2)});
 		}
 		
+		if (ConfigHandler.enableThaumcraftWalls) {
+			if (Loader.isModLoaded("Thaumcraft")) {
+				safeAddShaped(BlocksP.arcane_stone_wall, 6, new Object[] {"###", "###", '#', new ItemStack(ConfigBlocks.blockCosmeticSolid, 1, 6)});
+				safeAddShaped(BlocksP.arcane_brick_wall, 6, new Object[] {"###", "###", '#', new ItemStack(ConfigBlocks.blockCosmeticSolid, 1, 7)});
+				safeAddShaped(BlocksP.ancient_stone_wall, 6, new Object[] {"###", "###", '#', new ItemStack(ConfigBlocks.blockCosmeticSolid, 1, 11)});
+			}
+		}
 		// Stairs
 
 		if (ConfigHandler.moreStoneBricksBlocks) {
@@ -149,40 +165,65 @@ public class RecipeHandler {
 
 		// Fences of all wood types
 		if (ConfigHandler.enableWoodSpecificFences) {
+			if (ConfigHandler.replaceVanillaFences) {
+				removeRecipe(Blocks.fence);
+				if (!Loader.isModLoaded("malisiscore")) {
+					GameRegistry.addShapelessRecipe(new ItemStack(BlocksP.oak_fence, 1), Blocks.fence);
+					removeRecipe(Blocks.nether_brick_fence);
+					safeAddShaped(BlocksP.nether_brick_fence, 6, new Object[] {"###", "###", '#', Blocks.nether_brick});
+					GameRegistry.addShapelessRecipe(new ItemStack(BlocksP.nether_brick_fence, 1), Blocks.nether_brick_fence);
+				}
+			}
 			safeAddShaped(BlocksP.oak_fence, 3, new Object[] {"I#I", "I#I", '#', new ItemStack(Blocks.planks, 1, 0), 'I', Items.stick});
 			safeAddShaped(BlocksP.spruce_fence, 3, new Object[] {"I#I", "I#I", '#', new ItemStack(Blocks.planks, 1, 1), 'I', Items.stick});
 			safeAddShaped(BlocksP.birch_fence, 3, new Object[] {"I#I", "I#I", '#', new ItemStack(Blocks.planks, 1, 2), 'I', Items.stick});
 			safeAddShaped(BlocksP.jungle_fence, 3, new Object[] {"I#I", "I#I", '#', new ItemStack(Blocks.planks, 1, 3), 'I', Items.stick});
 			safeAddShaped(BlocksP.acacia_fence, 3, new Object[] {"I#I", "I#I", '#', new ItemStack(Blocks.planks, 1, 4), 'I', Items.stick});
 			safeAddShaped(BlocksP.big_oak_fence, 3, new Object[] {"I#I", "I#I", '#', new ItemStack(Blocks.planks, 1, 5), 'I', Items.stick});
-			if (ConfigHandler.replaceVanillaFences) {
-				removeRecipe(Blocks.fence);
-				GameRegistry.addShapelessRecipe(new ItemStack(BlocksP.birch_fence, 1), Blocks.fence);
-			}
 		}
 		
 		// Fence gates of all wood types
 		if (ConfigHandler.enableWoodSpecificFenceGates) {
 			removeRecipe(Blocks.fence_gate);
-			safeAddShaped(BlocksP.oak_fence_gate, 1, new Object[] {"#I#", "#I#", '#', new ItemStack(Blocks.planks, 1, 0), 'I', Items.stick});
+			safeAddShaped(Blocks.fence_gate, 1, new Object[] {"#I#", "#I#", '#', new ItemStack(Blocks.planks, 1, 0), 'I', Items.stick});
+			//safeAddShaped(BlocksP.oak_fence_gate, 1, new Object[] {"#I#", "#I#", '#', new ItemStack(Blocks.planks, 1, 0), 'I', Items.stick}); // Why did I make an Oak Fence Gate ???
 			safeAddShaped(BlocksP.spruce_fence_gate, 1, new Object[] {"#I#", "#I#", '#', new ItemStack(Blocks.planks, 1, 1), 'I', Items.stick});
 			safeAddShaped(BlocksP.birch_fence_gate, 1, new Object[] {"#I#", "#I#", '#', new ItemStack(Blocks.planks, 1, 2), 'I', Items.stick});
 			safeAddShaped(BlocksP.jungle_fence_gate, 1, new Object[] {"#I#", "#I#", '#', new ItemStack(Blocks.planks, 1, 3), 'I', Items.stick});
 			safeAddShaped(BlocksP.acacia_fence_gate, 1, new Object[] {"#I#", "#I#", '#', new ItemStack(Blocks.planks, 1, 4), 'I', Items.stick});
 			safeAddShaped(BlocksP.big_oak_fence_gate, 1, new Object[] {"#I#", "#I#", '#', new ItemStack(Blocks.planks, 1, 5), 'I', Items.stick});
-			GameRegistry.addShapelessRecipe(new ItemStack(BlocksP.birch_fence_gate, 1), Blocks.fence_gate);
+			safeAddShaped(BlocksP.nether_brick_fence_gate, 1, new Object[] {"#I#", "#I#", '#', new ItemStack(Blocks.nether_brick, 1, 0), 'I', Items.stick});
 		}
 
+		if (ConfigHandler.enableThaumcraftFences) {
+			if (Loader.isModLoaded("Thaumcraft")) {
+				safeAddShaped(BlocksP.greatwood_fence, 3, new Object[] {"I#I", "I#I", '#', new ItemStack(ConfigBlocks.blockWoodenDevice, 1, 6), 'I', Items.stick});
+				safeAddShaped(BlocksP.silverwood_fence, 3, new Object[] {"I#I", "I#I", '#', new ItemStack(ConfigBlocks.blockWoodenDevice, 1, 7), 'I', Items.stick});
+				safeAddShaped(BlocksP.greatwood_fence_gate, 1, new Object[] {"#I#", "#I#", '#', new ItemStack(ConfigBlocks.blockWoodenDevice, 1, 6), 'I', Items.stick});
+				safeAddShaped(BlocksP.silverwood_fence_gate, 1, new Object[] {"#I#", "#I#", '#', new ItemStack(ConfigBlocks.blockWoodenDevice, 1, 7), 'I', Items.stick});
+			}
+		}
+		
 		if (ConfigHandler.enableWoodSpecificDoors) {
-			int numDoor = 3;
+			int numDoors = 3;
 			removeRecipe(Items.wooden_door);
-//			safeAddShaped(Items.wooden_door, numDoor, new Object[] {"##", "##", "##", '#', new ItemStack(Blocks.planks, 1, 0)});  // Wood Door from Oak Planks
-			safeAddShaped(DoorsP.door_item[0], numDoor, new Object[] {"##", "##", "##", '#', new ItemStack(Blocks.planks, 1, 0)}); // Oak Door from Oak Planks
-			safeAddShaped(DoorsP.door_item[1], numDoor, new Object[] {"##", "##", "##", '#', new ItemStack(Blocks.planks, 1, 1)});
-			safeAddShaped(DoorsP.door_item[2], numDoor, new Object[] {"##", "##", "##", '#', new ItemStack(Blocks.planks, 1, 2)});
-			safeAddShaped(DoorsP.door_item[3], numDoor, new Object[] {"##", "##", "##", '#', new ItemStack(Blocks.planks, 1, 3)});
-			safeAddShaped(DoorsP.door_item[4], numDoor, new Object[] {"##", "##", "##", '#', new ItemStack(Blocks.planks, 1, 4)});
-			safeAddShaped(DoorsP.door_item[5], numDoor, new Object[] {"##", "##", "##", '#', new ItemStack(Blocks.planks, 1, 5)});
+			if (ConfigHandler.replaceVanillaDoors) {
+				safeAddShaped(DoorsP.door_item[0], numDoors, new Object[] {"##", "##", "##", '#', new ItemStack(Blocks.planks, 1, 0)}); // Oak Door from Oak Planks
+				removeRecipe(Items.iron_door);
+				safeAddShaped(DoorsP.door_iron_item, numDoors, new Object[] {"##", "##", "##", '#', Items.iron_ingot});
+				if (!Loader.isModLoaded("malisiscore")) {
+					GameRegistry.addShapelessRecipe(new ItemStack(DoorsP.door_item[0], 1), Items.wooden_door);  // Vanilla Wood Door -> Minecraft+ Oak Door
+					GameRegistry.addShapelessRecipe(new ItemStack(DoorsP.door_iron_item, 1), Items.iron_door);  // Vanilla Iron Door -> Minecraft+ Iron Door
+				}
+			} else {
+				numDoors = 1;
+				safeAddShaped(Items.wooden_door, numDoors, new Object[] {"##", "##", "##", '#', new ItemStack(Blocks.planks, 1, 0)}); // Vanilla Wood Door from Oak Planks
+			}
+			safeAddShaped(DoorsP.door_item[1], numDoors, new Object[] {"##", "##", "##", '#', new ItemStack(Blocks.planks, 1, 1)});
+			safeAddShaped(DoorsP.door_item[2], numDoors, new Object[] {"##", "##", "##", '#', new ItemStack(Blocks.planks, 1, 2)});
+			safeAddShaped(DoorsP.door_item[3], numDoors, new Object[] {"##", "##", "##", '#', new ItemStack(Blocks.planks, 1, 3)});
+			safeAddShaped(DoorsP.door_item[4], numDoors, new Object[] {"##", "##", "##", '#', new ItemStack(Blocks.planks, 1, 4)});
+			safeAddShaped(DoorsP.door_item[5], numDoors, new Object[] {"##", "##", "##", '#', new ItemStack(Blocks.planks, 1, 5)});
 		}
 	
 		if (ConfigHandler.enableObsidianTools) {

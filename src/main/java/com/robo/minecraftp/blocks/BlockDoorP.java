@@ -16,7 +16,11 @@ public class BlockDoorP extends BlockDoor {
 	public BlockDoorP(String unlocalizedName, Material material) {
 		super(material);
 		setBlockName(unlocalizedName);
-		setBlockTextureName(ModInfo.MODID + ":" + unlocalizedName);
+		if (!unlocalizedName.equals("door_wood") && !unlocalizedName.equals("door_iron")) {
+			setBlockTextureName(ModInfo.MODID + ":" + unlocalizedName);
+		} else {
+			setBlockTextureName(unlocalizedName);
+		}
 	}
 
 	public void setDoorItem(Item doorItem) {

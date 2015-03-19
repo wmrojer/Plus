@@ -29,7 +29,7 @@ public class MinecraftPCreativeTab extends CreativeTabs {
 		addBlock(BlocksP.cobblestone_mossy_wall);
 		addBlock(BlocksP.stonebrick_wall);
 		
-		addBlock(BlocksP.oak_fence_gate);
+		//addBlock(BlocksP.oak_fence_gate);
 		addBlock(BlocksP.spruce_fence_gate);
 		
 	}

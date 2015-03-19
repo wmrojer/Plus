@@ -62,6 +62,13 @@ public class ThaumcraftPlugin {
 					safeAdd(BlocksP.quartz_chiseled_wall, (new AspectList()).add(Aspect.ENERGY, 3).add(Aspect.CRYSTAL, 3));
 					safeAdd(BlocksP.quartz_pillar_wall, (new AspectList()).add(Aspect.ENERGY, 3).add(Aspect.CRYSTAL, 3));
 				}
+
+				if (ConfigHandler.enableThaumcraftWalls) {
+					safeAdd(BlocksP.arcane_stone_wall, (new AspectList()).add(Aspect.EARTH, 1).add(Aspect.MAGIC, 1));
+					safeAdd(BlocksP.arcane_brick_wall, (new AspectList()).add(Aspect.EARTH, 1).add(Aspect.MAGIC, 1));
+					safeAdd(BlocksP.ancient_stone_wall, (new AspectList()).add(Aspect.EARTH, 1).add(Aspect.ELDRITCH, 1));
+				}
+
 				
 				if (ConfigHandler.enableDirtStairs) {
 					safeAdd(BlocksP.dirt_stairs, (new AspectList()).add(Aspect.EARTH, 2));
@@ -109,23 +116,34 @@ public class ThaumcraftPlugin {
 					safeAdd(BlocksP.acacia_fence, (new AspectList()).add(Aspect.TREE, 1));
 					safeAdd(BlocksP.big_oak_fence, (new AspectList()).add(Aspect.TREE, 1));
 				}
+				if (ConfigHandler.enableThaumcraftFences) {
+					safeAdd(BlocksP.greatwood_fence, (new AspectList()).add(Aspect.TREE, 1));
+					safeAdd(BlocksP.silverwood_fence, (new AspectList()).add(Aspect.TREE, 1));
+					safeAdd(BlocksP.greatwood_fence_gate, (new AspectList()).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
+					safeAdd(BlocksP.silverwood_fence_gate, (new AspectList()).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
+				}
 				
 				if (ConfigHandler.enableWoodSpecificFenceGates) {
-					safeAdd(BlocksP.oak_fence_gate, (new AspectList()).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
+					//safeAdd(BlocksP.oak_fence_gate, (new AspectList()).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
 					safeAdd(BlocksP.spruce_fence_gate, (new AspectList()).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
 					safeAdd(BlocksP.birch_fence_gate, (new AspectList()).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
 					safeAdd(BlocksP.jungle_fence_gate, (new AspectList()).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
 					safeAdd(BlocksP.acacia_fence_gate, (new AspectList()).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
 					safeAdd(BlocksP.big_oak_fence_gate, (new AspectList()).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
+					safeAdd(BlocksP.nether_brick_fence_gate, (new AspectList()).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
 				}
 				
 				if (ConfigHandler.enableWoodSpecificDoors) {
-					safeAdd(DoorsP.door_item[0], (new AspectList()).add(Aspect.TREE, 1).add(Aspect.MOTION, 1).add(Aspect.MECHANISM, 1));
-					safeAdd(DoorsP.door_item[1], (new AspectList()).add(Aspect.TREE, 1).add(Aspect.MOTION, 1).add(Aspect.MECHANISM, 1));
-					safeAdd(DoorsP.door_item[2], (new AspectList()).add(Aspect.TREE, 1).add(Aspect.MOTION, 1).add(Aspect.MECHANISM, 1));
-					safeAdd(DoorsP.door_item[3], (new AspectList()).add(Aspect.TREE, 1).add(Aspect.MOTION, 1).add(Aspect.MECHANISM, 1));
-					safeAdd(DoorsP.door_item[4], (new AspectList()).add(Aspect.TREE, 1).add(Aspect.MOTION, 1).add(Aspect.MECHANISM, 1));
-					safeAdd(DoorsP.door_item[5], (new AspectList()).add(Aspect.TREE, 1).add(Aspect.MOTION, 1).add(Aspect.MECHANISM, 1));
+					int numTree = 4;
+					if (ConfigHandler.replaceVanillaDoors) {
+						numTree = 1;
+						safeAdd(DoorsP.door_item[0], (new AspectList()).add(Aspect.TREE, numTree).add(Aspect.MOTION, 1).add(Aspect.MECHANISM, 1));
+					}
+					safeAdd(DoorsP.door_item[1], (new AspectList()).add(Aspect.TREE, numTree).add(Aspect.MOTION, 1).add(Aspect.MECHANISM, 1));
+					safeAdd(DoorsP.door_item[2], (new AspectList()).add(Aspect.TREE, numTree).add(Aspect.MOTION, 1).add(Aspect.MECHANISM, 1));
+					safeAdd(DoorsP.door_item[3], (new AspectList()).add(Aspect.TREE, numTree).add(Aspect.MOTION, 1).add(Aspect.MECHANISM, 1));
+					safeAdd(DoorsP.door_item[4], (new AspectList()).add(Aspect.TREE, numTree).add(Aspect.MOTION, 1).add(Aspect.MECHANISM, 1));
+					safeAdd(DoorsP.door_item[5], (new AspectList()).add(Aspect.TREE, numTree).add(Aspect.MOTION, 1).add(Aspect.MECHANISM, 1));
 				}
 				
 				if (ConfigHandler.enableObsidianTools) {

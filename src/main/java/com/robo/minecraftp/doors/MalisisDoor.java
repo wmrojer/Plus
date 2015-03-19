@@ -11,25 +11,40 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
-public class WoodDoor extends DoorDescriptor {
+public class MalisisDoor extends DoorDescriptor {
 
-	public WoodDoor(String unlocalizedName, ItemStack constructionStack ) {
-
-		setMaterial(Material.wood); 
-		setSoundType(Block.soundTypeWood); 
-		setHardness(3.0F);
+	public MalisisDoor(String unlocalizedName, Material material, ItemStack constructionStack) {
+		setMaterial(material);
+		if (material == Material.iron) {
+			setSoundType(Block.soundTypeMetal);
+			setOpeningTime(6);
+			setHardness(5.0F);
+			setRequireRedstone(true);
+		} else if (material == Material.rock ) {
+			setSoundType(Block.soundTypeStone);
+			setOpeningTime(12);
+			setHardness(4.0F);
+			setRequireRedstone(false);
+		} else {
+			setSoundType(Block.soundTypeWood);
+			setOpeningTime(4);
+			setHardness(3.0F);
+			setRequireRedstone(false);
+		}
 		try {
 			if ( this.getClass().getMethod("setMaxStackSize", int.class) != null) {
 				setMaxStackSize(64);
 			}
 		} catch (Exception e) {}
 		setName(unlocalizedName);
-		setTextureName(ModInfo.MODID + ":" + unlocalizedName);
+		if (!unlocalizedName.equals("door_wood") && !unlocalizedName.equals("door_iron")) {
+			setTextureName(ModInfo.MODID + ":" + unlocalizedName);
+		} else {
+			setTextureName(unlocalizedName);
+		}
 		setMovement(DoorRegistry.getMovement(RotatingDoorMovement.class)); 
 		setSound(DoorRegistry.getSound(VanillaDoorSound.class));
-		setOpeningTime(6);
 		setDoubleDoor(true);
-		setRequireRedstone(false);
 
 		setTab(CreativeTabs.tabRedstone);
 

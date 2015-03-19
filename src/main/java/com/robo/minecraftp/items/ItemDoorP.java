@@ -18,7 +18,11 @@ public class ItemDoorP extends ItemDoor {
 		super(material);
         this.maxStackSize = 64;		
 		setUnlocalizedName(unlocalizedName);
-		setTextureName(ModInfo.MODID + ":" +unlocalizedName);
+		if (!unlocalizedName.equals("door_wood") && !unlocalizedName.equals("door_iron")) {
+			setTextureName(ModInfo.MODID + ":" +unlocalizedName);
+		} else {
+			setTextureName(unlocalizedName);
+		}
 		this.doorBlock = doorBlock;
 	}
 
