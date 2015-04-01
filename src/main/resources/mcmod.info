@@ -1,7 +1,7 @@
 [
 {
   "modid": "minecraft+",
-  "name": "Minecraft+",
+  "name": "Plus",
   "description": "Adds 'missing' blocks to Minecraft.",
   "version": "${version}",
   "mcversion": "${mcversion}",

@@ -22,13 +22,16 @@ public class ConfigHandler {
 	public static boolean enableBrickWall = true;
 	public static boolean enableNetherBrickWall = true;
 	public static boolean enableQuartzWall = true;
+	public static boolean enableNetherrackWall = true;
 	public static boolean interconnectWalls = true;
 	public static boolean connectWallsFences;
 	
 	public static boolean enableDirtStairs = true;
 	public static boolean enableDirtSlab = true;
 	public static boolean enableStoneStairs = true;
-
+	public static boolean enableNetherrackStairs = true;
+	public static boolean enableNetherrackSlab = true;
+	
 	public static boolean moreMossyCobblestoneBlocks = true;
 	public static boolean moreStoneBricksBlocks = true;
 	public static boolean moreSandstoneBlocks = true;
@@ -80,12 +83,15 @@ public class ConfigHandler {
 		enableBrickWall = config.get(Configuration.CATEGORY_GENERAL, "EnableBrickWall", true, "Enable Brick Wall").setRequiresMcRestart(true).getBoolean();
 		enableNetherBrickWall = config.get(Configuration.CATEGORY_GENERAL, "EnableNetherBrickWall", true, "Enable NetherBrick Wall").setRequiresMcRestart(true).getBoolean();
 		enableQuartzWall = config.get(Configuration.CATEGORY_GENERAL, "EnableQuartzWall", true, "Enable Quartz Wall").setRequiresMcRestart(true).getBoolean();
+		enableNetherrackWall = config.get(Configuration.CATEGORY_GENERAL, "EnableNetherrackWall", true, "Enable Netherrack Wall").setRequiresMcRestart(true).getBoolean();
 
 		interconnectWalls = config.get(Configuration.CATEGORY_GENERAL, "InterconnectWalls", true, "Should different type of walls connect").getBoolean();
 		
 		enableDirtStairs = config.get(Configuration.CATEGORY_GENERAL, "EnableDirtStairs", true, "Enable Dirt Stairs").setRequiresMcRestart(true).getBoolean();
 		enableDirtSlab = config.get(Configuration.CATEGORY_GENERAL, "EnableDirtSlab", true, "Enable Dirt Slab").setRequiresMcRestart(true).getBoolean();
 		enableStoneStairs = config.get(Configuration.CATEGORY_GENERAL, "EnableStoneStairs", true, "Enable Stone Stairs (not cobblestone)").setRequiresMcRestart(true).getBoolean();
+		enableNetherrackStairs = config.get(Configuration.CATEGORY_GENERAL, "EnableNetherrackStairs", true, "Enable Netherrack Stairs").setRequiresMcRestart(true).getBoolean();
+		enableNetherrackSlab = config.get(Configuration.CATEGORY_GENERAL, "EnableNetherrackSlab", true, "Enable Netherrack Slab").setRequiresMcRestart(true).getBoolean();
 
 		moreMossyCobblestoneBlocks = config.get(Configuration.CATEGORY_GENERAL, "MoreMossyCobblestoneBlocks", true, "Slabs and Stairs from Mossy Cobblestone").setRequiresMcRestart(true).getBoolean();
 		moreStoneBricksBlocks = config.get(Configuration.CATEGORY_GENERAL, "MoreStoneBricksBlocks", true, "Slabs and Stairs from Mossy, Carved & Cracked Stonebricks").setRequiresMcRestart(true).getBoolean();

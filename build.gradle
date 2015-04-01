@@ -50,7 +50,7 @@ minecraft {
 }
 
 group= "com.robo.minecraftp"
-archivesBaseName = "minecraft+_"+minecraft.version
+archivesBaseName = "plus_"+minecraft.version
 
 sourceSets {
     main {

@@ -93,7 +93,9 @@ public class RecipeHandler {
 		if (ConfigHandler.enableNetherBrickWall) {
 			safeAddShaped(BlocksP.nether_brick_wall, 7, new Object[] {" # ", "###", "###", '#', Blocks.nether_brick});
 		}
-		
+		if (ConfigHandler.enableNetherrackWall) {
+			safeAddShaped(BlocksP.netherrack_wall, 6, new Object[] {"###", "###", '#', Blocks.netherrack});
+		}
 		if (ConfigHandler.enableQuartzWall) {
 			safeAddShaped(BlocksP.quartz_wall, 6, new Object[] {"###", "###", '#', new ItemStack(Blocks.quartz_block, 1, 0)});
 			safeAddShaped(BlocksP.quartz_chiseled_wall, 6, new Object[] {"###", "###", '#', new ItemStack(Blocks.quartz_block, 1, 1)});
@@ -156,6 +158,12 @@ public class RecipeHandler {
 
 		if (ConfigHandler.enableStoneStairs) {
 			safeAddShaped(BlocksP.stone_stairs, 4, new Object[] {"#  ", "## ", "###", '#', Blocks.stone});
+		}
+		if (ConfigHandler.enableNetherrackStairs) {
+			safeAddShaped(BlocksP.netherrack_stairs, 4, new Object[] {"#  ", "## ", "###", '#', Blocks.netherrack});
+		}
+		if (ConfigHandler.enableNetherrackSlab) {
+			safeAddShaped(BlocksP.netherrack_slab, 6, new Object[] {"###", '#', Blocks.netherrack});
 		}
 
 		if (ConfigHandler.moreMossyCobblestoneBlocks ) {

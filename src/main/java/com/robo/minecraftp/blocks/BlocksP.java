@@ -35,9 +35,34 @@ public class BlocksP {
 	public static BlockWall quartz_wall;
 	public static BlockWall quartz_chiseled_wall;
 	public static BlockWall quartz_pillar_wall;
+	public static BlockWall netherrack_wall;
 	public static BlockWall arcane_stone_wall;
 	public static BlockWall arcane_brick_wall;
 	public static BlockWall ancient_stone_wall;
+	
+	public static BlockStairs dirt_stairs;
+	public static BlockStairs stone_stairs;
+	public static BlockStairs cobblestone_mossy_stairs;
+	public static BlockStairs stonebrick_mossy_stairs;
+	public static BlockStairs stonebrick_cracked_stairs;
+	public static BlockStairs stonebrick_chiseled_stairs;
+	public static BlockStairs sandstone_chiseled_stairs;
+	public static BlockStairs sandstone_smooth_stairs;
+	public static BlockStairs quartz_stairs;
+	public static BlockStairs quartz_chiseled_stairs;
+	public static BlockStairs quartz_pillar_stairs;
+	public static BlockStairs netherrack_stairs;
+	
+	public static BlockSlab dirt_slab;
+	public static BlockSlab cobblestone_mossy_slab;
+	public static BlockSlab stonebrick_mossy_slab;
+	public static BlockSlab stonebrick_cracked_slab;
+	public static BlockSlab stonebrick_chiseled_slab; 
+	public static BlockSlab sandstone_chiseled_slab;
+	public static BlockSlab sandstone_smooth_slab;
+	public static BlockSlab quartz_chiseled_slab;
+	public static BlockSlab quartz_pillar_slab;
+	public static BlockSlab netherrack_slab;
 	
 	public static BlockFence oak_fence;
 	public static BlockFence spruce_fence;
@@ -58,28 +83,6 @@ public class BlocksP {
 	public static BlockFenceGate nether_brick_fence_gate;
 	public static BlockFenceGate greatwood_fence_gate;
 	public static BlockFenceGate silverwood_fence_gate;
-	
-	public static BlockStairs dirt_stairs;
-	public static BlockStairs stone_stairs;
-	public static BlockStairs cobblestone_mossy_stairs;
-	public static BlockStairs stonebrick_mossy_stairs;
-	public static BlockStairs stonebrick_cracked_stairs;
-	public static BlockStairs stonebrick_chiseled_stairs;
-	public static BlockStairs sandstone_chiseled_stairs;
-	public static BlockStairs sandstone_smooth_stairs;
-	public static BlockStairs quartz_stairs;
-	public static BlockStairs quartz_chiseled_stairs;
-	public static BlockStairs quartz_pillar_stairs;
-	
-	public static BlockSlab dirt_slab;
-	public static BlockSlab cobblestone_mossy_slab;
-	public static BlockSlab stonebrick_mossy_slab;
-	public static BlockSlab stonebrick_cracked_slab;
-	public static BlockSlab stonebrick_chiseled_slab; 
-	public static BlockSlab sandstone_chiseled_slab;
-	public static BlockSlab sandstone_smooth_slab;
-	public static BlockSlab quartz_chiseled_slab;
-	public static BlockSlab quartz_pillar_slab;
 	
 	public static void registerBlocks() 
 	{
@@ -117,6 +120,9 @@ public class BlocksP {
 		if (ConfigHandler.enableNetherBrickWall) {
 			nether_brick_wall = addWall("netherbrick_wall", Blocks.nether_brick);
 		}
+		if (ConfigHandler.enableNetherrackWall) {
+			netherrack_wall = addWall("netherrack_wall", Blocks.netherrack);
+		}
 
 		if (ConfigHandler.enableQuartzWall) {
 			quartz_wall = addWall("quartz_wall", Blocks.quartz_block);
@@ -140,9 +146,14 @@ public class BlocksP {
 		if (ConfigHandler.enableDirtSlab) {
 			dirt_slab = addSlab("dirt_slab",Blocks.dirt, 1.0F);
 		}
-
 		if (ConfigHandler.enableStoneStairs) {
 			stone_stairs = addStairs("stone_stairs", Blocks.stone, 0);
+		}
+		if (ConfigHandler.enableNetherrackStairs) {
+			netherrack_stairs = addStairs("netherrack_stairs", Blocks.netherrack, 0);
+		}
+		if (ConfigHandler.enableNetherrackSlab) {
+			netherrack_slab = addSlab("netherrack_slab",Blocks.netherrack, 2.0F);
 		}
 
 		if (ConfigHandler.moreMossyCobblestoneBlocks ) {

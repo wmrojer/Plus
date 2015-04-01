@@ -30,7 +30,9 @@ public class ThaumcraftPlugin {
 			try {
 				if (ConfigHandler.replaceVanillaWalls) {
 					safeAdd(BlocksP.cobblestone_wall, (new AspectList()).add(Aspect.EARTH, 1).add(Aspect.ENTROPY, 1));
-					safeAdd(BlocksP.cobblestone_mossy_wall, (new AspectList()).add(Aspect.EARTH, 1).add(Aspect.MAGIC, 1).add(Aspect.PLANT, 1));
+					if (!Loader.isModLoaded("malisiscore")) {
+						safeAdd(BlocksP.cobblestone_mossy_wall, (new AspectList()).add(Aspect.EARTH, 1).add(Aspect.MAGIC, 1).add(Aspect.PLANT, 1));
+					}
 				}
 
 				if (ConfigHandler.enableStoneWall) {
@@ -56,7 +58,9 @@ public class ThaumcraftPlugin {
 				if (ConfigHandler.enableNetherBrickWall) {
 					safeAdd(BlocksP.nether_brick_wall, (new AspectList()).add(Aspect.EARTH, 2).add(Aspect.FIRE, 1));
 				}
-				
+				if (ConfigHandler.enableNetherrackWall) {
+					safeAdd(BlocksP.netherrack_wall, (new AspectList()).add(Aspect.EARTH, 2).add(Aspect.FIRE, 1));
+				}
 				if (ConfigHandler.enableQuartzWall) {
 					safeAdd(BlocksP.quartz_wall, (new AspectList()).add(Aspect.ENERGY, 3).add(Aspect.CRYSTAL, 3));
 					safeAdd(BlocksP.quartz_chiseled_wall, (new AspectList()).add(Aspect.ENERGY, 3).add(Aspect.CRYSTAL, 3));
@@ -78,6 +82,12 @@ public class ThaumcraftPlugin {
 				}
 				if (ConfigHandler.enableStoneStairs) {
 					safeAdd(BlocksP.stone_stairs, (new AspectList()).add(Aspect.EARTH, 2));
+				}
+				if (ConfigHandler.enableNetherrackStairs) {
+					safeAdd(BlocksP.netherrack_stairs, (new AspectList()).add(Aspect.EARTH, 2).add(Aspect.FIRE, 1));
+				}
+				if (ConfigHandler.enableNetherrackSlab) {
+					safeAdd(BlocksP.netherrack_slab, (new AspectList()).add(Aspect.EARTH, 1));
 				}
 
 				if (ConfigHandler.moreMossyCobblestoneBlocks ) {
@@ -119,18 +129,18 @@ public class ThaumcraftPlugin {
 				if (ConfigHandler.enableThaumcraftFences) {
 					safeAdd(BlocksP.greatwood_fence, (new AspectList()).add(Aspect.TREE, 1));
 					safeAdd(BlocksP.silverwood_fence, (new AspectList()).add(Aspect.TREE, 1));
-					safeAdd(BlocksP.greatwood_fence_gate, (new AspectList()).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
-					safeAdd(BlocksP.silverwood_fence_gate, (new AspectList()).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
+					safeAdd(BlocksP.greatwood_fence_gate, (new AspectList()).add(Aspect.TREE, 4).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
+					safeAdd(BlocksP.silverwood_fence_gate, (new AspectList()).add(Aspect.TREE, 4).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
 				}
 				
 				if (ConfigHandler.enableWoodSpecificFenceGates) {
 					//safeAdd(BlocksP.oak_fence_gate, (new AspectList()).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
-					safeAdd(BlocksP.spruce_fence_gate, (new AspectList()).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
-					safeAdd(BlocksP.birch_fence_gate, (new AspectList()).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
-					safeAdd(BlocksP.jungle_fence_gate, (new AspectList()).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
-					safeAdd(BlocksP.acacia_fence_gate, (new AspectList()).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
-					safeAdd(BlocksP.big_oak_fence_gate, (new AspectList()).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
-					safeAdd(BlocksP.nether_brick_fence_gate, (new AspectList()).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
+					safeAdd(BlocksP.spruce_fence_gate, (new AspectList()).add(Aspect.TREE, 4).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
+					safeAdd(BlocksP.birch_fence_gate, (new AspectList()).add(Aspect.TREE, 4).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
+					safeAdd(BlocksP.jungle_fence_gate, (new AspectList()).add(Aspect.TREE, 4).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
+					safeAdd(BlocksP.acacia_fence_gate, (new AspectList()).add(Aspect.TREE, 4).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
+					safeAdd(BlocksP.big_oak_fence_gate, (new AspectList()).add(Aspect.TREE, 4).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
+					safeAdd(BlocksP.nether_brick_fence_gate, (new AspectList()).add(Aspect.EARTH, 2).add(Aspect.FIRE, 1).add(Aspect.TRAVEL, 1).add(Aspect.MECHANISM, 1));
 				}
 				
 				if (ConfigHandler.enableWoodSpecificDoors) {
