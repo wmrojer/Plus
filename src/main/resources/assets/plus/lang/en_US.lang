@@ -1,0 +1,139 @@
+
+tile.cobblestone_wall.name=Cobblestone Wall
+tile.cobblestone_mossy_wall.name=Mossy Cobblestone Wall
+tile.stone_wall.name=Stone Wall
+tile.stonebrick_wall.name=Stone Brick Wall
+tile.stonebrick_mossy_wall.name=Mossy Stonebrick Wall
+tile.stonebrick_cracked_wall.name=Cracked Stonebrick Wall
+tile.stonebrick_chiseled_wall.name=Chiseled Stonebrick Wall
+tile.sandstone_wall.name=Sandstone Wall
+tile.sandstone_chiseled_wall.name=Chiseled Sandstone Wall
+tile.sandstone_smooth_wall.name=Smooth Sandstone Wall
+tile.brick_wall.name=Brick Wall
+tile.netherbrick_wall.name=Nether Brick Wall
+tile.netherrack_wall.name=Netherrack Wall
+tile.quartz_wall.name=Quartz Wall
+tile.quartz_chiseled_wall.name=Chiseled Quartz Wall
+tile.quartz_pillar_wall.name=Pillar Quartz Wall
+tile.arcane_stone_wall.name=Arcane Stone Wall
+tile.arcane_brick_wall.name=Arcane Brick Wall
+tile.ancient_stone_wall.name=Ancient Stone Wall
+
+tile.oak_fence.name=Oak Fence
+tile.spruce_fence.name=Spruce Fence
+tile.birch_fence.name=Birch Fence
+tile.jungle_fence.name=Jungle Fence
+tile.acacia_fence.name=Acacia Fence
+tile.big_oak_fence.name=Dark Oak Fence
+tile.nether_brick_fence.name=Nether Brick Fence
+
+tile.greatwood_fence.name=Greatwood Fence
+tile.silverwood_fence.name=Silverwood Fence
+
+tile.sacredoak_fence.name=Sacred Oak Wood Fence
+tile.cherry_fence.name=Cherry Wood Fence
+tile.dark_fence.name=Dark Wood Fence
+tile.fir_fence.name=Fir Wood Fence
+tile.ethereal_fence.name=Ethereal Wood Fence
+tile.magic_fence.name=Magic Wood Fence
+tile.mangrove_fence.name=Mangrove Wood Fence
+tile.palm_fence.name=Palm Wood Fence
+tile.redwood_fence.name=Redwood Wood Fence
+tile.willow_fence.name=Willow Wood Fence
+tile.bambooThatching_fence.name=Bamboo Thatching Fence
+tile.pine_fence.name=Pine Wood Fence
+tile.hellBark_fence.name=Hellbark Wood Fence
+tile.jacaranda_fence.name=Jacaranda Wood Fence
+tile.mahogany_fence.name=Mahogany Wood Fence
+
+tile.oak_fence_gate.name=Oak Fence Gate
+tile.spruce_fence_gate.name=Spruce Fence Gate
+tile.birch_fence_gate.name=Birch Fence Gate
+tile.jungle_fence_gate.name=Jungle Fence Gate
+tile.acacia_fence_gate.name=Acacia Fence Gate
+tile.big_oak_fence_gate.name=Dark Oak Fence Gate
+tile.nether_brick_fence_gate.name=Nether Brick Fence Gate
+
+tile.greatwood_fence_gate.name=Greatwood Fence Gate
+tile.silverwood_fence_gate.name=Silverwood Fence Gate
+
+tile.sacredoak_fence_gate.name=Sacred Oak Wood Fence Gate
+tile.cherry_fence_gate.name=Cherry Wood Fence Gate
+tile.dark_fence_gate.name=Dark Wood Fence Gate
+tile.fir_fence_gate.name=Fir Wood Fence Gate
+tile.ethereal_fence_gate.name=Ethereal Wood Fence Gate
+tile.magic_fence_gate.name=Magic Wood Fence Gate
+tile.mangrove_fence_gate.name=Mangrove Wood Fence Gate
+tile.palm_fence_gate.name=Palm Wood Fence Gate
+tile.redwood_fence_gate.name=Redwood Wood Fence Gate
+tile.willow_fence_gate.name=Willow Wood Fence Gate
+tile.bambooThatching_fence_gate.name=Bamboo Thatching Fence Gate
+tile.pine_fence_gate.name=Pine Wood Fence Gate
+tile.hellBark_fence_gate.name=Hellbark Wood Fence Gate
+tile.jacaranda_fence_gate.name=Jacaranda Wood Fence Gate
+tile.mahogany_fence_gate.name=Mahogany Wood Fence Gate
+
+item.door_iron.name=Iron Door
+item.door_wood.name=Oak Door
+item.door_spruce.name=Spruce Door
+item.door_birch.name=Birch Door
+item.door_jungle.name=Jungle Door
+item.door_acacia.name=Acacia Door
+item.door_dark_oak.name=Dark Oak Door
+
+item.door_greatwood.name=Greatwood Door
+item.door_silverwood.name=Silverwood Door
+
+item.door_sacredoak.name=Sacred Oak Wood Door
+item.door_cherry.name=Cherry Wood Door
+item.door_dark.name=Dark Wood Door
+item.door_fir.name=Fir Wood Door
+item.door_ethereal.name=Ethereal Wood Door
+item.door_magic.name=Magic Wood Door
+item.door_mangrove.name=Mangrove Wood Door
+item.door_palm.name=Palm Wood Door
+item.door_redwood.name=Redwood Wood Door
+item.door_willow.name=Willow Wood Door
+item.door_bambooThatching.name=Bamboo Thatching Door
+item.door_pine.name=Pine Wood Door
+item.door_hellBark.name=Hellbark Wood Door
+item.door_jacaranda.name=Jacaranda Wood Door
+item.door_mahogany.name=Mahogany Wood Door
+
+tile.dirt_stairs.name=Dirt Stairs
+tile.cobblestone_mossy_stairs=Mossy Cobblestone Stairs
+tile.stone_stairs.name=Stone Stairs
+tile.stone_mossy_stairs=Mossy Cobblestone Stairs
+tile.stonebrick_mossy_stairs.name=Mossy Stonebrick Stairs
+tile.stonebrick_cracked_stairs.name=Cracked Stonebrick Stairs
+tile.stonebrick_chiseled_stairs.name=Chiseled Stonebrick Stairs
+tile.sandstone_chiseled_stairs.name=Chiseled Sandstone Stairs
+tile.sandstone_smooth_stairs.name=Smooth Sandstone Stairs
+tile.quartz_chiseled_stairs.name=Chiseled Quartz Stairs
+tile.quartz_pillar_stairs.name=Pillar Quartz Stairs
+tile.netherrack_stairs.name=Netherrack Stairs
+
+tile.dirt_slab.name=Dirt Slab
+tile.cobblestone_mossy_slab.name=Mossy Cobblestone Slab
+tile.stonebrick_mossy_slab.name=Mossy Stonebrick Slab
+tile.stonebrick_cracked_slab.name=Cracked Stonebrick Slab
+tile.stonebrick_chiseled_slab.name=Chiseled Stonebrick Slab
+tile.sandstone_chiseled_slab.name=Chiseled Sandstone Slab
+tile.sandstone_smooth_slab.name=Smooth Sandstone Slab
+tile.quartz_chiseled_slab.name=Chiseled Quartz Slab
+tile.quartz_pillar_slab.name=Pillar Quartz Slab
+tile.netherrack_slab.name=Netherrack Slab
+
+item.obsidian_sword.name=Obsidian Sword
+item.obsidian_axe.name=Obsidian Axe
+item.obsidian_hoe.name=Obsidian Hoe
+item.obsidian_pickaxe.name=Obsidian Pickaxe
+item.obsidian_shovel.name=Obsidian Shovel
+item.mutton_raw.name=Raw Mutton
+item.mutton_cooked.name=Cooked Mutton
+
+config.category.general.tooltip=Config Stairs and Slabs
+config.category.wallsfences.tooltip=Config Walls and Fences
+config.category.starisslabs.tooltip=Config Stairs and Slabs
+config.category.modcomp.tooltip=Mod Compatibility
+config.category.thaumcraft.tooltip=Thaumcraft integration

@@ -14,3 +14,5 @@
 /build.gradle.bak
 /.project
 /.classpath
+/crash-reports/
+/build/
