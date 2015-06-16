@@ -1,5 +1,5 @@
-# Minecraft+
-Minecraft+ is and mod for Minecraft 1.7.10 using Forge 10.13.2.1291.
+# Plus
+Plus is and mod for Minecraft 1.7.10 using Forge 10.13.2.1291.
 It adds "missing" blocks and recipes to Minecraft and implements some Minecraft 1.8 functionality into Minecraft 1.7.10
 
 Tools made from Obsidian blocks and Iron Ingots that has the same level and speed as stone tools, but has supperior durability. (Should probably be a seperate mod)
@@ -15,3 +15,4 @@ Add features are configurable in game or with the config file.
 Includes support for Thaumcraft and MalisisDoors but does not require them.
 If Thaumcraft is installed all added items and blocks have proper aspects on them.
 If MalisisDoors is installed it will use it to make doors.
+Supports Biomes'O Plenty woods and adds Fences and Fence Gates for them.
