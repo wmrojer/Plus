@@ -201,10 +201,10 @@ public class BlocksP {
 			etfuturum_wall = new BlockWall[EtFuturumPlugin.stoneTypes.length];
 			etfuturum_stairs = new BlockStairs[EtFuturumPlugin.stoneTypes.length];
 			etfuturum_slab = new BlockSlab[EtFuturumPlugin.stoneTypes.length];
-			for (int i = 1; i <= EtFuturumPlugin.stoneTypes.length; i++) {
-				etfuturum_wall[i] = addWall( EtFuturumPlugin.stoneTypes[i]+"_wall", EtFuturumPlugin.getStone(), i);
-				etfuturum_stairs[i] = addStairs( EtFuturumPlugin.stoneTypes[i]+"_stairs", EtFuturumPlugin.getStone(), i);
-				etfuturum_slab[i] = addSlab( EtFuturumPlugin.stoneTypes[i]+"_slab", EtFuturumPlugin.getStone(), i);
+			for (int i = 0; i < EtFuturumPlugin.stoneTypes.length; i++) {
+				etfuturum_wall[i] = addWall( EtFuturumPlugin.stoneTypes[i]+"_wall", EtFuturumPlugin.getStone(), i+1);
+				etfuturum_stairs[i] = addStairs( EtFuturumPlugin.stoneTypes[i]+"_stairs", EtFuturumPlugin.getStone(), i+1);
+				etfuturum_slab[i] = addSlab( EtFuturumPlugin.stoneTypes[i]+"_slab", EtFuturumPlugin.getStone(), i+1);
 			}
 		}
 		

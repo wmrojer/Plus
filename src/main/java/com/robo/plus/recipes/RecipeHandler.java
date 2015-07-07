@@ -169,10 +169,10 @@ public class RecipeHandler {
 		}
 
 		if (ConfigHandler.enableEtFuturum) {
-			for (int i = 1; i <= EtFuturumPlugin.stoneTypes.length; i++) {
-				safeAddShaped(BlocksP.etfuturum_wall[i], 3, new Object[] {"###", "###", '#', new ItemStack( EtFuturumPlugin.getStone(), 1, i)});
-				safeAddShaped(BlocksP.etfuturum_stairs[i], 3, new Object[] {"#  ", "## ", "###", '#', new ItemStack( EtFuturumPlugin.getStone(), 1, i)});
-				safeAddShaped(BlocksP.etfuturum_slab[i], 3, new Object[] {"###", '#', new ItemStack( EtFuturumPlugin.getStone(), 1, i)});
+			for (int i = 0; i < EtFuturumPlugin.stoneTypes.length; i++) {
+				safeAddShaped(BlocksP.etfuturum_wall[i], 3, new Object[] {"###", "###", '#', new ItemStack( EtFuturumPlugin.getStone(), 1, i+1)});
+				safeAddShaped(BlocksP.etfuturum_stairs[i], 3, new Object[] {"#  ", "## ", "###", '#', new ItemStack( EtFuturumPlugin.getStone(), 1, i+1)});
+				safeAddShaped(BlocksP.etfuturum_slab[i], 3, new Object[] {"###", '#', new ItemStack( EtFuturumPlugin.getStone(), 1, i+1)});
 			}
 		}
 		
