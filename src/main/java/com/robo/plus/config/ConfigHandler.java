@@ -5,6 +5,7 @@ import java.io.File;
 import com.robo.plus.Plus;
 import com.robo.plus.info.ModInfo;
 import com.robo.plus.plugins.BiomesOPlentyPlugin;
+import com.robo.plus.plugins.EtFuturumPlugin;
 import com.robo.plus.plugins.ThaumcraftPlugin;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
@@ -47,6 +48,7 @@ public class ConfigHandler {
 	public static boolean replaceVanillaDoors = true;
 	
 	public static boolean enableObsidianTools = true;
+	public static boolean enableIronBow = true;
 	
 	public static boolean enableMissingRecipes = true;
 
@@ -63,9 +65,12 @@ public class ConfigHandler {
 	public static boolean enableThaumcraft = true;
 	public static boolean enableMalisisDoors = true;
 	public static boolean enableBiomesOPlenty = true;
+	public static boolean enableEtFuturum = true;
 	
 	public static boolean useOreDict = false;
 	public static boolean dumpRecipes = false;
+	public static boolean recipesFirst = true;
+
 	
 	public static class Category { 
 		public static String WALLSFENCES = "wallsfences";
@@ -124,6 +129,7 @@ public class ConfigHandler {
 		enableWoodSpecificDoors = config.get(Configuration.CATEGORY_GENERAL, "EnableWoodSpecificDoors", true, "Enabled wood specific doors").setRequiresMcRestart(true).getBoolean();
 		
 		enableObsidianTools = config.get(Configuration.CATEGORY_GENERAL, "EnableObsidianTools", true, "Enable Obsidian tools").setRequiresMcRestart(true).getBoolean();
+		enableIronBow = config.get(Configuration.CATEGORY_GENERAL, "EnableIronBow", true, "Enable Iron Bow").setRequiresMcRestart(true).getBoolean();
 
 		enableMissingRecipes = config.get(Configuration.CATEGORY_GENERAL, "EnableMissingRecipes", true, "Enable missing recipes for vanilla blocks").setRequiresMcRestart(true).getBoolean();
 
@@ -153,8 +159,15 @@ public class ConfigHandler {
 			enableBiomesOPlenty = false;
 		}
 
+		if (EtFuturumPlugin.isLoaded()) {
+			enableEtFuturum = config.get(Category.MODCOMP, "EnableEtFuturum", true, "Et Futurum mod support").setRequiresMcRestart(true).getBoolean();
+		} else {
+			enableEtFuturum = false;
+		}
+
 		useOreDict = config.get(Configuration.CATEGORY_GENERAL, "UseOreDict", false, "Use Ore Dictionary for recipes").setRequiresMcRestart(true).getBoolean();
 		dumpRecipes = config.get(Configuration.CATEGORY_GENERAL, "DumpRecipes", false, "List recipe order in log on player entering world").setRequiresMcRestart(false).getBoolean();
+		recipesFirst = config.get(Configuration.CATEGORY_GENERAL, "RecipesFirst", true, "Recipes are sorted first in the crafting list").setRequiresMcRestart(true).getBoolean();
 		
 		if (config.hasChanged()) {
 			config.save();

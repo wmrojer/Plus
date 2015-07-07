@@ -18,6 +18,8 @@ public final class ItemsP {
 	public static Item obsidian_hoe;
 	public static Item obsidian_pickaxe;
 	public static Item obsidian_shovel;
+	public static Item obsidian_bow;
+	public static Item iron_bow;
 	
 	public static Item mutton_raw;
 	public static Item mutton_cooked;
@@ -34,6 +36,10 @@ public final class ItemsP {
 			GameRegistry.registerItem(obsidian_hoe = new ItemObsidianHoe("obsidian_hoe", OBSIDIAN), "obsidian_hoe");
 			GameRegistry.registerItem(obsidian_pickaxe = new ItemObsidianPickaxe("obsidian_pickaxe", OBSIDIAN), "obsidian_pickaxe");
 			GameRegistry.registerItem(obsidian_shovel = new ItemObsidianShovel("obsidian_shovel", OBSIDIAN), "obsidian_shovel");
+			GameRegistry.registerItem(obsidian_bow = new ItemBowP("obsidian_bow", 1536), "obsidian_bow");
+		}
+		if (ConfigHandler.enableIronBow) {
+			GameRegistry.registerItem(iron_bow = new ItemBowP("iron_bow", 768), "iron_bow");
 		}
 		if (ConfigHandler.addMuttonToSheep) {
 			GameRegistry.registerItem(mutton_raw = new ItemFoodP("mutton_raw", 2, 0.3F, true), "mutton_raw");

@@ -5,8 +5,9 @@ import thaumcraft.common.config.ConfigBlocks;
 import com.robo.plus.config.ConfigHandler;
 import com.robo.plus.items.ItemSlabP;
 import com.robo.plus.plugins.BiomesOPlentyPlugin;
-
+import com.robo.plus.plugins.EtFuturumPlugin;
 import com.robo.plus.plugins.ThaumcraftPlugin;
+
 
 // MalisisCore 1.7.10-0.11.4
 import net.malisis.core.util.replacement.ReplacementTool;
@@ -46,6 +47,7 @@ public class BlocksP {
 	public static BlockWall arcane_stone_wall;
 	public static BlockWall arcane_brick_wall;
 	public static BlockWall ancient_stone_wall;
+	public static BlockWall[] etfuturum_wall;
 	
 	public static BlockStairs dirt_stairs;
 	public static BlockStairs stone_stairs;
@@ -59,6 +61,7 @@ public class BlocksP {
 	public static BlockStairs quartz_chiseled_stairs;
 	public static BlockStairs quartz_pillar_stairs;
 	public static BlockStairs netherrack_stairs;
+	public static BlockStairs[] etfuturum_stairs;
 	
 	public static BlockSlab dirt_slab;
 	public static BlockSlab cobblestone_mossy_slab;
@@ -70,6 +73,7 @@ public class BlocksP {
 	public static BlockSlab quartz_chiseled_slab;
 	public static BlockSlab quartz_pillar_slab;
 	public static BlockSlab netherrack_slab;
+	public static BlockSlab[] etfuturum_slab;
 	
 	public static BlockFence oak_fence;
 	public static BlockFence spruce_fence;
@@ -191,6 +195,17 @@ public class BlocksP {
 			quartz_pillar_stairs = addStairs("quartz_pillar_stairs", Blocks.quartz_block, 2);
 			quartz_chiseled_slab = addSlab("quartz_chiseled_slab", Blocks.quartz_block, 1);
 			quartz_pillar_slab = addSlab("quartz_pillar_slab", Blocks.quartz_block, 2);
+		}
+
+		if (ConfigHandler.enableEtFuturum) {
+			etfuturum_wall = new BlockWall[EtFuturumPlugin.stoneTypes.length];
+			etfuturum_stairs = new BlockStairs[EtFuturumPlugin.stoneTypes.length];
+			etfuturum_slab = new BlockSlab[EtFuturumPlugin.stoneTypes.length];
+			for (int i = 1; i <= EtFuturumPlugin.stoneTypes.length; i++) {
+				etfuturum_wall[i] = addWall( EtFuturumPlugin.stoneTypes[i]+"_wall", EtFuturumPlugin.getStone(), i);
+				etfuturum_stairs[i] = addStairs( EtFuturumPlugin.stoneTypes[i]+"_stairs", EtFuturumPlugin.getStone(), i);
+				etfuturum_slab[i] = addSlab( EtFuturumPlugin.stoneTypes[i]+"_slab", EtFuturumPlugin.getStone(), i);
+			}
 		}
 		
 		if (ConfigHandler.enableWoodSpecificFences) {

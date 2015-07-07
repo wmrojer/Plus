@@ -1,18 +1,6 @@
 package com.robo.plus.recipes;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-
-import thaumcraft.common.config.ConfigBlocks;
-
-import com.robo.plus.blocks.BlocksP;
-import com.robo.plus.config.ConfigHandler;
-import com.robo.plus.doors.DoorsP;
-import com.robo.plus.items.ItemsP;
-import com.robo.plus.plugins.BiomesOPlentyPlugin;
 
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -21,56 +9,20 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import thaumcraft.common.config.ConfigBlocks;
+
+import com.robo.plus.blocks.BlocksP;
+import com.robo.plus.config.ConfigHandler;
+import com.robo.plus.doors.DoorsP;
+import com.robo.plus.items.ItemsP;
+import com.robo.plus.plugins.BiomesOPlentyPlugin;
+import com.robo.plus.plugins.EtFuturumPlugin;
+import com.robo.plus.recipes.RecipeHelper;
 
 public class RecipeHandler {
 
-	public static List<IRecipe> removeRecipes(Block block) {
-		return removeRecipes(Item.getItemFromBlock(block));
-	}
-	@SuppressWarnings("unchecked")
-	public static List<IRecipe> removeRecipes(Item item) {
-		List<IRecipe> removedRecipes = new ArrayList<IRecipe>();
-		Iterator<IRecipe> recipeItr = CraftingManager.getInstance().getRecipeList().iterator();
-		while (recipeItr.hasNext()) {
-			IRecipe recipe = recipeItr.next();
-			ItemStack itemStack = recipe.getRecipeOutput();
-			if (itemStack != null && itemStack.getItem() == item) {
-				recipeItr.remove();
-				removedRecipes.add(recipe);
-			}
-		}
-		return removedRecipes;
-	}
-	
-	public static List<IRecipe> removeRecipes(Block block, int metadata) {
-		return removeRecipes(Item.getItemFromBlock(block), metadata);
-	}
-	@SuppressWarnings("unchecked")
-	public static List<IRecipe> removeRecipes(Item item, int metadata) {
-		List<IRecipe> removedRecipes = new ArrayList<IRecipe>();
-		Iterator<IRecipe> recipeItr = CraftingManager.getInstance().getRecipeList().iterator();
-		while (recipeItr.hasNext()) {
-			IRecipe recipe = recipeItr.next();
-			ItemStack itemStack = recipe.getRecipeOutput();
-			if (itemStack != null && itemStack.getItem() == item && itemStack.getItemDamage() == metadata) {
-				recipeItr.remove();
-				removedRecipes.add(recipe);
-			}
-		}
-		return removedRecipes;
-	}
-	
-	public static void addRecipes(List<IRecipe> recipes) {
-		Iterator<IRecipe> recipeItr = recipes.iterator();
-		while (recipeItr.hasNext()) {
-			GameRegistry.addRecipe(recipeItr.next());
-		}
-	}
-	
 	public static void registerRecipes() {
 		
 		//OreDictionary.registerOre("stickWood", Items.stick);
@@ -93,7 +45,7 @@ public class RecipeHandler {
 		// Walls
 		if (ConfigHandler.replaceVanillaWalls) {
 			
-			removeRecipes(Blocks.cobblestone_wall);
+			RecipeHelper.removeRecipes(Blocks.cobblestone_wall);
 			if (Loader.isModLoaded("malisiscore")) {
 				safeAddShaped(BlocksP.cobblestone_wall, 6, 1, new Object[] {"###", "###", '#', Blocks.mossy_cobblestone});
 				safeAddOreShaped(BlocksP.cobblestone_wall, 6, 0, new Object[] {"###", "###", '#', blockCobblestone});
@@ -151,44 +103,44 @@ public class RecipeHandler {
 		// Stairs
 
 		if (ConfigHandler.moreStoneBricksBlocks) {
-			List<IRecipe> oldRecipes = removeRecipes(Blocks.stone_brick_stairs);
+			List<IRecipe> oldRecipes = RecipeHelper.removeRecipes(Blocks.stone_brick_stairs);
 			safeAddShaped(BlocksP.stonebrick_mossy_stairs, 4, new Object[] {"#  ", "## ", "###", '#', new ItemStack(Blocks.stonebrick, 1, 1)});
 			safeAddShaped(BlocksP.stonebrick_cracked_stairs, 4, new Object[] {"#  ", "## ", "###", '#', new ItemStack(Blocks.stonebrick, 1, 2)});
 			safeAddShaped(BlocksP.stonebrick_chiseled_stairs, 4, new Object[] {"#  ", "## ", "###", '#', new ItemStack(Blocks.stonebrick, 1, 3)});
 //			safeAddShaped(Blocks.stone_brick_stairs, 4, new Object[] {"#  ", "## ", "###", '#', new ItemStack(Blocks.stonebrick, 1, 0)});
-			addRecipes(oldRecipes);
-			oldRecipes = removeRecipes(Blocks.stone_slab,5);
+			RecipeHelper.addRecipes(oldRecipes);
+			oldRecipes = RecipeHelper.removeRecipes(Blocks.stone_slab,5);
 			safeAddShaped(BlocksP.stonebrick_mossy_slab, 6, new Object[] {"###", '#', new ItemStack(Blocks.stonebrick, 1, 1)});
 			safeAddShaped(BlocksP.stonebrick_cracked_slab, 6, new Object[] {"###", '#', new ItemStack(Blocks.stonebrick, 1, 2)});
 			safeAddShaped(BlocksP.stonebrick_chiseled_slab, 6, new Object[] {"###", '#', new ItemStack(Blocks.stonebrick, 1, 3)});
 //			safeAddShaped(Blocks.stone_slab, 6, 5, new Object[] {"###", '#', new ItemStack(Blocks.stonebrick, 1, 0)});
-			addRecipes(oldRecipes);
+			RecipeHelper.addRecipes(oldRecipes);
 		}
 		
 		if (ConfigHandler.moreSandstoneBlocks) {
-			List<IRecipe> oldRecipes = removeRecipes(Blocks.sandstone_stairs);
+			List<IRecipe> oldRecipes = RecipeHelper.removeRecipes(Blocks.sandstone_stairs);
 			safeAddShaped(BlocksP.sandstone_chiseled_stairs, 4, new Object[] {"#  ", "## ", "###", '#', new ItemStack(Blocks.sandstone, 1, 1)});
 			safeAddShaped(BlocksP.sandstone_smooth_stairs, 4, new Object[] {"#  ", "## ", "###", '#', new ItemStack(Blocks.sandstone, 1, 2)});
 //			safeAddOreShaped(Blocks.sandstone_stairs, 4, new Object[] {"#  ", "## ", "###", '#', blockSandstone});
-			addRecipes(oldRecipes);
-			oldRecipes = removeRecipes(Blocks.stone_slab,1);
+			RecipeHelper.addRecipes(oldRecipes);
+			oldRecipes = RecipeHelper.removeRecipes(Blocks.stone_slab,1);
 			safeAddShaped(BlocksP.sandstone_chiseled_slab, 6, new Object[] {"###", '#', new ItemStack(Blocks.sandstone, 1, 1)});
 			safeAddShaped(BlocksP.sandstone_smooth_slab, 6, new Object[] {"###", '#', new ItemStack(Blocks.sandstone, 1, 2)});
 //			safeAddOreShaped(Blocks.stone_slab, 6, 1, new Object[] {"###", '#', blockSandstone});
-			addRecipes(oldRecipes);
+			RecipeHelper.addRecipes(oldRecipes);
 		}
 
 		if (ConfigHandler.moreQuartzBlocks) {
-			List<IRecipe> oldRecipes = removeRecipes(Blocks.quartz_stairs); 
+			List<IRecipe> oldRecipes = RecipeHelper.removeRecipes(Blocks.quartz_stairs); 
 			safeAddShaped(BlocksP.quartz_chiseled_stairs, 4, new Object[] {"#  ", "## ", "###", '#', new ItemStack(Blocks.quartz_block, 1, 1)});
 			safeAddShaped(BlocksP.quartz_pillar_stairs, 4, new Object[] {"#  ", "## ", "###", '#', new ItemStack(Blocks.quartz_block, 1, 2)});
 //			safeAddOreShaped(Blocks.quartz_stairs, 4, new Object[] {"#  ", "## ", "###", '#', blockQuartz});
-			addRecipes(oldRecipes);
-			oldRecipes = removeRecipes(Blocks.stone_slab,7);
+			RecipeHelper.addRecipes(oldRecipes);
+			oldRecipes = RecipeHelper.removeRecipes(Blocks.stone_slab,7);
 			safeAddShaped(BlocksP.quartz_chiseled_slab, 6, new Object[] {"###", '#', new ItemStack(Blocks.quartz_block, 1, 1)});
 			safeAddShaped(BlocksP.quartz_pillar_slab, 6, new Object[] {"###", '#', new ItemStack(Blocks.quartz_block, 1, 2)});
 //			safeAddOreShaped(Blocks.stone_slab, 6, 7, new Object[] {"###", '#', blockQuartz});
-			addRecipes(oldRecipes);
+			RecipeHelper.addRecipes(oldRecipes);
 		}
 
 
@@ -216,13 +168,21 @@ public class RecipeHandler {
 			safeAddShaped(BlocksP.cobblestone_mossy_slab, 6, new Object[] {"###", '#', Blocks.mossy_cobblestone});
 		}
 
+		if (ConfigHandler.enableEtFuturum) {
+			for (int i = 1; i <= EtFuturumPlugin.stoneTypes.length; i++) {
+				safeAddShaped(BlocksP.etfuturum_wall[i], 3, new Object[] {"###", "###", '#', new ItemStack( EtFuturumPlugin.getStone(), 1, i)});
+				safeAddShaped(BlocksP.etfuturum_stairs[i], 3, new Object[] {"#  ", "## ", "###", '#', new ItemStack( EtFuturumPlugin.getStone(), 1, i)});
+				safeAddShaped(BlocksP.etfuturum_slab[i], 3, new Object[] {"###", '#', new ItemStack( EtFuturumPlugin.getStone(), 1, i)});
+			}
+		}
+		
 		// Fences of all wood types
 		if (ConfigHandler.enableWoodSpecificFences) {
 			//removeRecipes(Blocks.fence);  // This one does not conflict so no need to remove it
 			if (ConfigHandler.replaceVanillaFences) {
 				if (!Loader.isModLoaded("malisiscore")) {
 					GameRegistry.addShapelessRecipe(new ItemStack(BlocksP.oak_fence, 1), Blocks.fence); // Vanilla Fence >> Plus Oak Fence
-					removeRecipes(Blocks.nether_brick_fence);
+					RecipeHelper.removeRecipes(Blocks.nether_brick_fence);
 					safeAddShaped(BlocksP.nether_brick_fence, 6, new Object[] {"###", "###", '#', Blocks.nether_brick});
 					GameRegistry.addShapelessRecipe(new ItemStack(BlocksP.nether_brick_fence, 1), Blocks.nether_brick_fence); // Vanilla Nether Brick Fence >> Plus Nether Brick Fence
 				}
@@ -248,7 +208,7 @@ public class RecipeHandler {
 		
 		// Fence gates of all wood types
 		if (ConfigHandler.enableWoodSpecificFenceGates) {
-			List<IRecipe> oldFenceGateRecipes = removeRecipes(Blocks.fence_gate); // We re-add it again later so it comes after our recipe
+			List<IRecipe> oldFenceGateRecipes = RecipeHelper.removeRecipes(Blocks.fence_gate); // We re-add it again later so it comes after our recipe
 			safeAddOreShaped(Blocks.fence_gate, 1, new Object[] {"I#I", "I#I", '#', new ItemStack(Blocks.planks, 1, 0), 'I', stickWood});
 			safeAddOreShaped(BlocksP.spruce_fence_gate, 1, new Object[] {"I#I", "I#I", '#', new ItemStack(Blocks.planks, 1, 1), 'I', stickWood});
 			safeAddOreShaped(BlocksP.birch_fence_gate, 1, new Object[] {"I#I", "I#I", '#', new ItemStack(Blocks.planks, 1, 2), 'I', stickWood});
@@ -268,19 +228,19 @@ public class RecipeHandler {
 				}
 			}
 			// Re-add vanilla fence gate recipe
-			addRecipes(oldFenceGateRecipes);
+			RecipeHelper.addRecipes(oldFenceGateRecipes);
 			//GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.fence_gate, 1), new Object[] {"I#I", "I#I", '#', "plankWood", 'I', "stickWood"}));
 		}
 
 		
 		if (ConfigHandler.enableWoodSpecificDoors) {
 			int numDoors = 3;
-			List<IRecipe> oldDoorRecipes = removeRecipes(Items.wooden_door); // We re-add it again later so it comes after our recipe
+			List<IRecipe> oldDoorRecipes = RecipeHelper.removeRecipes(Items.wooden_door); // We re-add it again later so it comes after our recipe
 			if (ConfigHandler.replaceVanillaDoors) {
 				safeAddShaped(DoorsP.door_item[0], numDoors, new Object[] {"##", "##", "##", '#', new ItemStack(Blocks.planks, 1, 0)}); // Oak Door from Oak Planks
-				List<IRecipe> oldIronDoorRecipes = removeRecipes(Items.iron_door);
+				List<IRecipe> oldIronDoorRecipes = RecipeHelper.removeRecipes(Items.iron_door);
 				safeAddOreShaped(DoorsP.door_iron_item, numDoors, new Object[] {"##", "##", "##", '#', ingotIron});
-				addRecipes(oldIronDoorRecipes);
+				RecipeHelper.addRecipes(oldIronDoorRecipes);
 				if (!Loader.isModLoaded("malisiscore")) {
 					GameRegistry.addShapelessRecipe(new ItemStack(DoorsP.door_item[0], 1), Items.wooden_door);  // Vanilla Wood Door -> Minecraft+ Oak Door
 					GameRegistry.addShapelessRecipe(new ItemStack(DoorsP.door_iron_item, 1), Items.iron_door);  // Vanilla Iron Door -> Minecraft+ Iron Door
@@ -297,7 +257,7 @@ public class RecipeHandler {
 			// TODO: Add Thaumcraft Doors
 			// TODO: Add BiomesOPlenty Doors
 			// Re-add vanilla door recipes
-			addRecipes(oldDoorRecipes);
+			RecipeHelper.addRecipes(oldDoorRecipes);
 		}
 	
 		if (ConfigHandler.enableObsidianTools) {
@@ -306,8 +266,12 @@ public class RecipeHandler {
 			safeAddOreShaped(ItemsP.obsidian_hoe, 1, new Object[] {"##", "I ", "I ", '#', Blocks.obsidian, 'I', ingotIron});
 			safeAddOreShaped(ItemsP.obsidian_pickaxe, 1, new Object[] {"###", " I ", " I ", '#', Blocks.obsidian, 'I', ingotIron});
 			safeAddOreShaped(ItemsP.obsidian_shovel, 1, new Object[] {"#", "I", "I", '#', Blocks.obsidian, 'I', ingotIron});
+			safeAddOreShaped(ItemsP.obsidian_bow, 1, new Object[] {" #S", "I S", " #S", '#', Blocks.obsidian, 'I', ingotIron, 'S', Items.string});
 		}
-
+		if (ConfigHandler.enableIronBow) {
+			safeAddOreShaped(ItemsP.iron_bow, 1, new Object[] {" IS", "I S", " IS", 'I', ingotIron, 'S', Items.string});
+		}
+		
 		if (ConfigHandler.addMuttonToSheep) {
 			GameRegistry.addSmelting(new ItemStack(ItemsP.mutton_raw, 1), new ItemStack(ItemsP.mutton_cooked, 1), 0.35F);
 		}
@@ -324,61 +288,66 @@ public class RecipeHandler {
 	}	
 	
 
-	private static void safeAddShaped(Item item, int num, Object... params) {
-		safeAddShaped(item, num, 0, params);
+	private static IRecipe safeAddShaped(Item item, int num, Object... params) {
+		return safeAddShaped(item, num, 0, params);
 	}
 
-	private static void safeAddShaped(Item item, int num, int meta, Object... params)
+	private static IRecipe safeAddShaped(Item item, int num, int meta, Object... params)
 	{
 		if (item != null) {
-			GameRegistry.addShapedRecipe(new ItemStack(item, num, meta), params);
+			IRecipe recipe = GameRegistry.addShapedRecipe(new ItemStack(item, num, meta), params);
+			if (ConfigHandler.recipesFirst)
+				RecipeHelper.moveRecipeToTop(recipe);
+			return recipe;
 		}
+		return null;
 	}
 
-	private static void safeAddShaped(Block block, int num, Object... params) {
-		safeAddShaped(block, num, 0, params);
+	private static IRecipe safeAddShaped(Block block, int num, Object... params) {
+		return safeAddShaped(block, num, 0, params);
 	}
 	
-	private static void safeAddShaped(Block block, int num, int meta, Object... params)
+	private static IRecipe safeAddShaped(Block block, int num, int meta, Object... params)
 	{
 		if (block != null) {
-			GameRegistry.addShapedRecipe(new ItemStack(block, num, meta), params);
+			return safeAddShaped(Item.getItemFromBlock(block), num, meta, params);
 		}
+		return null;
 	}
 
 // Ore Dict
 	
-	private static void safeAddOreShaped(Item item, int num, Object... params) {
+	private static IRecipe safeAddOreShaped(Item item, int num, Object... params) {
 		if (ConfigHandler.useOreDict)
-			safeAddOreShaped(item, num, 0, params);
+			return safeAddOreShaped(item, num, 0, params);
 		else
-			safeAddShaped(item, num, 0, params);
+			return safeAddShaped(item, num, 0, params);
 	}
 	
-	private static void safeAddOreShaped(Item item, int num, int meta, Object... params)
+	private static IRecipe safeAddOreShaped(Item item, int num, int meta, Object... params)
 	{
 		if (ConfigHandler.useOreDict) {
 			if (item != null) {
-				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(item, num, meta), params));
+				IRecipe recipe = new ShapedOreRecipe(new ItemStack(item, num, meta), params);
+				GameRegistry.addRecipe(recipe);
+				if (ConfigHandler.recipesFirst)
+					RecipeHelper.moveRecipeToTop(recipe);
+				return recipe;
 			}
+			return null;
 		} else 
-			safeAddShaped(item, num, 0, params);
+			return safeAddShaped(item, num, 0, params);
 	}
 
-	private static void safeAddOreShaped(Block block, int num, Object... params) {
-		if (ConfigHandler.useOreDict)
-			safeAddOreShaped(block, num, 0, params);
-		else
-			safeAddShaped(block, num, 0, params);
+	private static IRecipe safeAddOreShaped(Block block, int num, Object... params) {
+		return safeAddOreShaped(block, num, 0, params);
 	}
 	
-	private static void safeAddOreShaped(Block block, int num, int meta, Object... params)
+	private static IRecipe safeAddOreShaped(Block block, int num, int meta, Object... params)
 	{
-		if (ConfigHandler.useOreDict) {
-			if (block != null) {
-				GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(block, num, meta), params));
-			}
-		} else 
-			safeAddShaped(block, num, 0, params);
+		if (block != null) {
+			return safeAddOreShaped(Item.getItemFromBlock(block), num, meta, params);
+		}
+		return null;
 	}
 }
